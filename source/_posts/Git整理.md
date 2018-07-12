@@ -1,0 +1,34 @@
+﻿# Git整理
+
+标签（空格分隔）： Git
+
+---
+title:Git整理
+date: 2018-6-13 11:16:19
+categories: Git整理
+tags: [Git]
+description: Git整理
+---
+
+[TOC]
+
+## 创建SSH Keys
+
+- 输入指令，进入.ssh文件夹
+
+> cd ~/.ssh/ 
+如果提示 “ No such file or directory”，你可以手动的创建一个 .ssh文件夹即可
+
+- 配置全局的name和email，这里是的你github或者bitbucket的name和email
+
+> git config --global user.name "pockadmin"  
+  
+> git config --global user.email "pockadmin@163.com"  
+
+- 生成key
+
+> ssh-keygen -t rsa -C “pockadmin@163.com”
+
+- 连续按三次回车，这里设置的密码就为空了，并且创建了key。
+
+- 打开Admin目录进入.ssh文件夹，用记事本打开id_rsa.pub，复制里面的内容添加到你github或者bitbucket ssh设置里即可
