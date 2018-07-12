@@ -80,4 +80,4 @@ theme: landscape
 deploy:
   type: git
   repo: https://github.com/MyOnlyCat/MyOnlyCat.github.io.git
-  branch: hexo
+  branch: master
