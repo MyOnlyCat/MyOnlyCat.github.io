@@ -1,0 +1,36 @@
+// Custom styles.
+// 主页文章添加阴影效果
+.post {
+margin-top: 60px;
+margin-bottom: 60px;
+padding: 25px;
+-webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);
+-moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);
+}
+//头背景
+.header {  background: url("https://ws1.sinaimg.cn/large/694830ebgy1fh3pyd05klj21kw0f2dy2.jpg"); }
+
+//侧边栏的背景
+.sidebar { background: url("/uploads/bk.jpg"); }
+.sidebar { background-size: 320px 659px; }
+
+//头像圆形 以及旋转
+.site-author-image {
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 100%;
+    transition: transform 1.0s ease-out;
+}
+img:hover {
+    transform: rotateZ(360deg);
+}
+.posts-expand .post-body img:hover {
+    transform: initial;
+}
+
+.menu {
+	background: rgba(255,255,255,0.65);
+	margin-left: auto;
+    margin-right: auto;
+	width: 470px;
+	border-radius: initial;
+}
