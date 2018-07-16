@@ -3,13 +3,14 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 后来猫走丢了
-subtitle: 好想发工资呀
+title: Aurora
+#subtitle: 遥遥万里心声是否有偏差
 description: 成长
-keywords:
+keywords: "前端,js,jquery,javascript,html5,java,nodejs,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3"
 author: Pock
-language: zh-CN
+language: zh-Hans
 timezone: Asia/Shanghai
+email: pockadmin@163.com
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -41,7 +42,7 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace:
   
 # Home page setting
@@ -73,7 +74,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: yilia
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -81,3 +82,4 @@ deploy:
   type: git
   repo: https://github.com/MyOnlyCat/MyOnlyCat.github.io.git
   branch: master
+  

@@ -1,16 +1,16 @@
-﻿# EGG框架在用forEach或者Map进行遍历调用async方法问题
-
-标签（空格分隔）： EGG
 
 ---
-title:EGG框架在用forEach或者Map进行遍历调用async方法问题
+title: "EGG框架在用forEach或者Map进行遍历调用async方法问题"
 date: 2018-7-4 10:20:50
 categories: EGG
-tags: [EGG]
-description: EGG框架在用forEach或者Map进行遍历调用async方法问题
+tags: 
+		- EGG
 ---
 
-[TOC]
+EGG框架在用forEach或者Map进行遍历调用async方法问题
+<!-- more -->
+
+
 ## 0X00 出现的情况
 
 ```js

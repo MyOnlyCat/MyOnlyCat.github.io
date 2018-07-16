@@ -1,20 +1,19 @@
-﻿# EGG 入门笔记
-
-标签（空格分隔）： EGG
 
 ---
-title: EGG 入门笔记
+layout: post
+title: "EGG 入门笔记"
 date: 2018-6-4 16:13:37
-categories: EGG 入门笔记
-tags: [EGG]
-description: EGG 入门笔记
+tags: 
+			- EGG
 ---
 
-[TOC]
+EGG框架快速上手
+<!-- more -->
 
 ## 0X00 
 
 - 这里基于我的情况,需要快速上手
+
 
 ## 0X01 基于Egg框架的项目启动
 

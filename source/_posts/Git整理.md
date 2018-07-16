@@ -1,16 +1,14 @@
-﻿# Git整理
-
-标签（空格分隔）： Git
 
 ---
-title:Git整理
+title: "Git整理"
 date: 2018-6-13 11:16:19
-categories: Git整理
-tags: [Git]
-description: Git整理
+categories: Git
+tags: 
+		- Git
 ---
 
-[TOC]
+记录一下容易忘记的GIT命令
+<!-- more -->
 
 ## 创建SSH Keys
 
