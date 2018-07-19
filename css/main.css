@@ -1815,7 +1815,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #491886;
+  background: #b5cc7a;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2720,4 +2720,13 @@ img:hover {
   margin-right: auto;
   width: 470px;
   border-radius: initial;
+}
+.site-state-item {
+  border-left: 1.5px solid #a166ab;
+}
+.site-description {
+  color: #f37055;
+}
+.site-author-name {
+  color: #f0ad4e;
 }

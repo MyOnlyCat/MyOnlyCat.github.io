@@ -95,7 +95,7 @@
 
 
 
-  <meta name="keywords" content="EGG," />
+  <meta name="keywords" content="IDEA," />
 
 
 
@@ -106,18 +106,18 @@
 
 
 
-<meta name="description" content="EGG框架在用forEach或者Map进行遍历调用async方法问题">
-<meta name="keywords" content="EGG">
+<meta name="description" content="记录下使用IDEA开发下常用的插件">
+<meta name="keywords" content="IDEA">
 <meta property="og:type" content="article">
-<meta property="og:title" content="EGG框架在用forEach或者Map进行遍历调用async方法问题">
-<meta property="og:url" content="http://yoursite.com/2018/07/04/EGG框架在用forEach或者Map进行遍历调用async方法问题/index.html">
+<meta property="og:title" content="我的IDEA常用插件">
+<meta property="og:url" content="http://yoursite.com/2018/02/28/我的IDEA常用插件/index.html">
 <meta property="og:site_name" content="Aurora">
-<meta property="og:description" content="EGG框架在用forEach或者Map进行遍历调用async方法问题">
+<meta property="og:description" content="记录下使用IDEA开发下常用的插件">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-18T09:27:38.204Z">
+<meta property="og:updated_time" content="2018-07-18T10:13:21.320Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="EGG框架在用forEach或者Map进行遍历调用async方法问题">
-<meta name="twitter:description" content="EGG框架在用forEach或者Map进行遍历调用async方法问题">
+<meta name="twitter:title" content="我的IDEA常用插件">
+<meta name="twitter:description" content="记录下使用IDEA开发下常用的插件">
 
 
 
@@ -147,13 +147,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/04/EGG框架在用forEach或者Map进行遍历调用async方法问题/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/02/28/我的IDEA常用插件/"/>
 
 
 
 
 
-  <title>EGG框架在用forEach或者Map进行遍历调用async方法问题 | Aurora</title>
+  <title>我的IDEA常用插件 | Aurora</title>
   
 
 
@@ -280,7 +280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/04/EGG框架在用forEach或者Map进行遍历调用async方法问题/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/28/我的IDEA常用插件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pock">
@@ -297,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">EGG框架在用forEach或者Map进行遍历调用async方法问题</h1>
+          <h1 class="post-title" itemprop="name headline">我的IDEA常用插件</h1>
         
 
         <div class="post-meta">
@@ -309,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-04T10:20:50+08:00">
-                2018-07-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T09:45:00+08:00">
+                2018-02-28
               </time>
             
 
@@ -332,8 +332,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/EGG/" itemprop="url" rel="index">
-                    <span itemprop="name">EGG</span>
+                  <a href="/categories/IDEA/" itemprop="url" rel="index">
+                    <span itemprop="name">IDEA</span>
                   </a>
                 </span>
 
@@ -350,9 +350,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/04/EGG框架在用forEach或者Map进行遍历调用async方法问题/#comments" itemprop="discussionUrl">
+                <a href="/2018/02/28/我的IDEA常用插件/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/07/04/EGG框架在用forEach或者Map进行遍历调用async方法问题/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/02/28/我的IDEA常用插件/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  160
+                  237
                 </span>
               
 
@@ -411,9 +411,33 @@
       
 
       
-        <p><strong>EGG框架在用forEach或者Map进行遍历调用async方法问题</strong><br><a id="more"></a></p>
-<h2 id="0X00-出现的情况"><a href="#0X00-出现的情况" class="headerlink" title="0X00 出现的情况"></a>0X00 出现的情况</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假设 newList为一个array类型,这段代码处于async中</span></span><br><span class="line">newList.forEach(<span class="function"><span class="params">x</span> =&gt;</span> x&#123;</span><br><span class="line">    <span class="comment">//这里的的await 会报错,如果不用await这里返回的y就是一个promise对象对于我这种入门的人不太好处理</span></span><br><span class="line">    <span class="keyword">var</span> y = <span class="keyword">await</span> <span class="keyword">this</span>.model.show();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="0X01-我的解决方法"><a href="#0X01-我的解决方法" class="headerlink" title="0X01 我的解决方法"></a>0X01 我的解决方法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假设 newList为一个array类型,这段代码处于async中</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; newList.length; i++) &#123;</span><br><span class="line">    <span class="comment">//这里再来调用async方法,这里await方法不会报错,返回的y也是对的</span></span><br><span class="line">    <span class="keyword">var</span> y = <span class="keyword">await</span> <span class="keyword">this</span>.model.show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p><strong>记录下使用IDEA开发下常用的插件</strong><br><a id="more"></a></p>
+<h3 id="CodeGlance"><a href="#CodeGlance" class="headerlink" title="CodeGlance"></a>CodeGlance</h3><ul>
+<li>代码预览</li>
+</ul>
+<h3 id="Alibaba-Java-Coding-Guidelines"><a href="#Alibaba-Java-Coding-Guidelines" class="headerlink" title="Alibaba Java Coding Guidelines"></a>Alibaba Java Coding Guidelines</h3><ul>
+<li>代码审查,根据阿里巴巴Java开发守则</li>
+</ul>
+<h3 id="grep-console"><a href="#grep-console" class="headerlink" title="grep-console"></a>grep-console</h3><ul>
+<li>日志颜色区分,结合log4j</li>
+</ul>
+<h3 id="activate-power-mode"><a href="#activate-power-mode" class="headerlink" title="activate-power-mode"></a>activate-power-mode</h3><ul>
+<li>写代码时的动画效果</li>
+</ul>
+<h3 id="Maven-Helper"><a href="#Maven-Helper" class="headerlink" title="Maven Helper"></a>Maven Helper</h3><ul>
+<li>一旦安装了Maven Helper插件，只要打开pom文件，就可以打开该pom文件的Dependency Analyzer视图（在文件打开之后，文件下面会多出这样一个tab），进入Dependency Analyzer视图之后有三个查看选项，分别是Conflicts(冲突)、All Dependencies as List(列表形式查看所有依赖)、All Dependencies as Tree(树结构查看所有依赖)。并且这个页面还支持搜索。很方便！并且使用该插件还能快速的执行maven命令。</li>
+</ul>
+<h3 id="FindBugs"><a href="#FindBugs" class="headerlink" title="FindBugs"></a>FindBugs</h3><ul>
+<li>查找BUG</li>
+</ul>
+<h3 id="Jrebel"><a href="#Jrebel" class="headerlink" title="Jrebel"></a>Jrebel</h3><ul>
+<li>热部署插件</li>
+</ul>
+<h3 id="类注释模板"><a href="#类注释模板" class="headerlink" title="类注释模板"></a>类注释模板</h3><ul>
+<li>File and Code Templates 中设置class 添加模板</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* <span class="doctag">@program</span>: $&#123;PROJECT_NAME&#125;</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* <span class="doctag">@description</span>: $&#123;description&#125;</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span>: lq</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* <span class="doctag">@create</span>: $&#123;YEAR&#125;/$&#123;MONTH&#125;/$&#123;DAY&#125;</span></span><br><span class="line"><span class="comment">**/</span></span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -430,7 +454,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/EGG/" rel="tag"># EGG</a>
+            <a href="/tags/IDEA/" rel="tag"># IDEA</a>
           
         </div>
       
@@ -443,8 +467,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/13/Git整理/" rel="next" title="Git整理">
-                <i class="fa fa-chevron-left"></i> Git整理
+              <a href="/2018/01/22/HashMap的负载因子/" rel="next" title="HashMap的负载因子">
+                <i class="fa fa-chevron-left"></i> HashMap的负载因子
               </a>
             
           </div>
@@ -453,8 +477,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/18/无工具破解开机密码/" rel="prev" title="无工具破解开机密码">
-                无工具破解开机密码 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/18/HEXO博客搭建的坑/" rel="prev" title="HEXO博客搭建的坑">
+                HEXO博客搭建的坑 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -613,7 +637,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0X00-出现的情况"><span class="nav-number">1.</span> <span class="nav-text">0X00 出现的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0X01-我的解决方法"><span class="nav-number">2.</span> <span class="nav-text">0X01 我的解决方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CodeGlance"><span class="nav-number">1.</span> <span class="nav-text">CodeGlance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Alibaba-Java-Coding-Guidelines"><span class="nav-number">2.</span> <span class="nav-text">Alibaba Java Coding Guidelines</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grep-console"><span class="nav-number">3.</span> <span class="nav-text">grep-console</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#activate-power-mode"><span class="nav-number">4.</span> <span class="nav-text">activate-power-mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maven-Helper"><span class="nav-number">5.</span> <span class="nav-text">Maven Helper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FindBugs"><span class="nav-number">6.</span> <span class="nav-text">FindBugs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jrebel"><span class="nav-number">7.</span> <span class="nav-text">Jrebel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类注释模板"><span class="nav-number">8.</span> <span class="nav-text">类注释模板</span></a></li></ol></div>
             
 
           </div>
@@ -778,9 +802,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/07/04/EGG框架在用forEach或者Map进行遍历调用async方法问题/';
-          this.page.identifier = '2018/07/04/EGG框架在用forEach或者Map进行遍历调用async方法问题/';
-          this.page.title = 'EGG框架在用forEach或者Map进行遍历调用async方法问题';
+          this.page.url = 'http://yoursite.com/2018/02/28/我的IDEA常用插件/';
+          this.page.identifier = '2018/02/28/我的IDEA常用插件/';
+          this.page.title = '我的IDEA常用插件';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://pockadmin.disqus.com/embed.js';
