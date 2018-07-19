@@ -7,7 +7,7 @@ tags:
 		- EGG
 ---
 
-EGG框架在用forEach或者Map进行遍历调用async方法问题
+**EGG框架在用forEach或者Map进行遍历调用async方法问题**
 <!-- more -->
 
 
