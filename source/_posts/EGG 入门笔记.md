@@ -3,6 +3,7 @@
 layout: post
 title: "EGG 入门笔记"
 date: 2018-6-4 16:13:37
+categories: EGG
 tags: 
 			- EGG
 ---
