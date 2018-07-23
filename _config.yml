@@ -14,7 +14,7 @@ email: pockadmin@163.com
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://voidday.com
 root: /
 permalink: :title.html
 permalink_defaults:

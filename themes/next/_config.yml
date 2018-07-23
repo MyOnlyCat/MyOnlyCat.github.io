@@ -805,6 +805,13 @@ vendors:
 
 
 # Assets
+
+#收录相关
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
+	
 css: css
 js: js
 images: images

@@ -11,6 +11,17 @@ tags:
 **初学MongoDB记录下遇见的语句**
 <!-- more -->
 
+## 数据库导出
+- 举例
+> `mongodump -h IP地址:MongoDB端口 -u MongoDB账户 -p MongoDB密码  -d 数据库名 -c 表名 -o /data/programs/bk/tasks.json(这里是导出的路径)`
+
+- `-h` 为需要导出的数据库地址注意加端口号
+- `-u` 为MongoDB的账号
+- `-p` 为MongoDB密码
+- `-d` 需要导出的数据在哪一个库
+- `-c` 需要导出的表名
+- `-o` 导出到哪里(可以控制导出的类型修改后缀名)
+
 
 ## 常用语句
 
@@ -120,5 +131,61 @@ let content = await this.model.find(params,{name: 1, sex:1, identityNumber: 1});
 ```js
 await this.model.count(query); # query里面是查询条件,返回数量
 ```
+
+### **`$set` 语句**
+
+- 假如有一下数据:
+- 
+```js
+//第一条
+{"_id": 1, "imgs": [7, 9, 2]},
+//第二条
+{"_id": 2, "imgs": [17, 56, 8]},
+//第三条
+{"_id": 3, "imgs": [93, 11, 534]}
+```
+
+- 这里有个需求,我想要更新**_id**为2,把**imgs**节点中元素为56的跟换为99
+
+```js
+> db.students.update({_id:2, imgs:99},{$set: {'imgs.$':56} })
+```
+
+**请记住，位置$操作符充当更新文档查询中第一个匹配的占位符。**
+
+- 假如数据变化稍微复杂,结构如下:
+
+```js
+{
+  _id: 1,
+  imgs: [
+     { "header": 12, "body": 32, "food": 67 },
+     { "header": 545, "body": 77, "food": 31 },
+     { "header": 54, "body": 22, "food": 65 }
+  ]
+}
+```
+
+- 有个需求,我需要更新嵌套文档中**_id**为1中的**imgs**节点中的的**body**字段为77的那一条数据中的**food**改为1
+
+```js
+
+db.xxxx.update(
+   { _id: 1, "imgs.body": 77 }, //这一个管道为条件
+   { $set: { "imgs.$.body" : 77 } } //这一个管道为修改内容,$只会修改满足条件的第一个
+
+```
+
+- 还是上面的数据结构,这里又有一个需求,我需要更新嵌套文档中**_id**为1中的**imgs**节点中的的**body**字段为**大于等于**77,**header**小于等于500的那一条数据中的**food**改为1
+
+```js
+
+db.xxxx.update(
+   { _id: 1, "imgs": { $elemMatch : {body : { $gte : 77 }}, {header : { $lte : 500 }} } }, //这一个管道为条件
+   { $set: { "imgs.$.food" : 77 } } //这一个管道为修改内容,$只会修改满足条件的第一个
+
+```
+
+**$elemMatch()操作符匹配多个内嵌文档的查询条件**
 
   [1]: http://static.zybuluo.com/pockadmin/6kku392uv4ws1e4yvawi5knr/image_1cgik7p5tg4l12n21kadqdof8j9.png
