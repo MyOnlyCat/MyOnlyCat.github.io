@@ -1,11 +1,13 @@
-
 ---
-title: "SpringBoot启动报错The import org.springframework.data.repository.query.Param cannot be resolved"
-date: 2017-12-19 10:31:31
+title: >-
+  SpringBoot启动报错The import org.springframework.data.repository.query.Param
+  cannot be resolved
 categories: SpringBoot
-tags: 
-	- SpringBoot, 
-	- 报错
+tags:
+  - 'SpringBoot,'
+  - 报错
+abbrlink: de8bd00d
+date: 2017-12-19 10:31:31
 ---
 
 **SpringBoot启动报错The import org.springframework.data.repository.query.Param cannot be resolved**

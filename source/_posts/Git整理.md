@@ -1,10 +1,10 @@
-
 ---
-title: "Git整理"
-date: 2018-6-13 11:16:19
+title: Git整理
 categories: Git
-tags: 
-		- Git
+tags:
+  - Git
+abbrlink: 19a5d6d0
+date: 2018-06-13 11:16:19
 ---
 
 **记录一下容易忘记的GIT命令**

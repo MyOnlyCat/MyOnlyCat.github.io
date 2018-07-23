@@ -1,10 +1,10 @@
-
 ---
-title: "JavaFx苦逼之路"
-date: 2018-1-12 09:42
+title: JavaFx苦逼之路
+date: '2018-1-12 09:42'
 categories: JavaFx
-tags: 
-		- JavaFx
+tags:
+  - JavaFx
+abbrlink: 69cc9e87
 ---
 
 **啊啊啊,JavaFX贼难玩,不喜欢**

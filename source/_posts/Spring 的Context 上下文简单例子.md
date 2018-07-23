@@ -1,11 +1,11 @@
-
 ---
-title: "Spring 的Context 上下文简单例子"
-date: 2018-5-18 10:37:28
+title: Spring 的Context 上下文简单例子
 categories: ApplicationContext
-tags: 
-		- spring, 
-		- Context上下文
+tags:
+  - 'spring,'
+  - Context上下文
+abbrlink: 43c8429b
+date: 2018-05-18 10:37:28
 ---
 
 

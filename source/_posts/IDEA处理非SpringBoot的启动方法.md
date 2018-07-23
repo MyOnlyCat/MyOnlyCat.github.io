@@ -1,11 +1,11 @@
-
 ---
-title: "IDEA处理非SpringBoot的启动方法"
-date: 2018-5-18 11:09:29
+title: IDEA处理非SpringBoot的启动方法
 categories: IDEA
-tags: 
-		- IDEA, 
-		- 疑难杂症
+tags:
+  - 'IDEA,'
+  - 疑难杂症
+abbrlink: 98783d64
+date: 2018-05-18 11:09:29
 ---
 
 **记录下配置非SpringBoot的问题**

@@ -1,11 +1,11 @@
-
 ---
 layout: post
-title: "EGG 入门笔记"
-date: 2018-6-4 16:13:37
+title: EGG 入门笔记
 categories: EGG
-tags: 
-			- EGG
+tags:
+  - EGG
+abbrlink: f0a9b556
+date: 2018-06-04 16:13:37
 ---
 
 EGG框架快速上手

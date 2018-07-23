@@ -1,10 +1,10 @@
-
 ---
-title: "MongoDB整理"
-date: 2018-6-13 10:16:28
+title: MongoDB整理
 categories: MongoDB整理
-tags: 
-		- MongoDB
+tags:
+  - MongoDB
+abbrlink: f1cfe333
+date: 2018-06-13 10:16:28
 ---
 
 

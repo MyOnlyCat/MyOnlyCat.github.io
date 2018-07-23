@@ -1,11 +1,11 @@
-
 ---
-title: "Redis的更新策略(二)"
-date: 2017-12-22 14:02:06
+title: Redis的更新策略(二)
 categories: Redis
-tags: 
-	- SpringBoot, 
-	- Redis
+tags:
+  - 'SpringBoot,'
+  - Redis
+abbrlink: 746cbd91
+date: 2017-12-22 14:02:06
 ---
 
 **Spring Boot中的缓存支持（二）使用Redis做集中式缓存**

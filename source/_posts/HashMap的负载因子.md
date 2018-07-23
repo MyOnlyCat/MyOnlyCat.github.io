@@ -1,11 +1,11 @@
-
 ---
-title: "HashMap的负载因子"
-date: 2018-1-22 09:56
+title: HashMap的负载因子
+date: '2018-1-22 09:56'
 categories: 数据结构
-tags: 
-		- Java
-		- HashMap
+tags:
+  - Java
+  - HashMap
+abbrlink: 726001da
 ---
 
 **学习数据结构的笔记**

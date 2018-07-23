@@ -1,11 +1,11 @@
-
 ---
-title: "SoringBoot正常启动,但是页面Whitelabel Error Page"
-date: 2017-12-22 11:13:12
+title: 'SoringBoot正常启动,但是页面Whitelabel Error Page'
 categories: SoringBoot
-tags: 
-	- SpringBoot, 
-	- 启动报错
+tags:
+  - 'SpringBoot,'
+  - 启动报错
+abbrlink: cd2213ac
+date: 2017-12-22 11:13:12
 ---
 
 **SoringBoot正常启动,但是页面Whitelabel Error Page**

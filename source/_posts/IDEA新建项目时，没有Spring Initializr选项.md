@@ -1,10 +1,10 @@
-
 ---
-title: "IDEA新建项目时，没有Spring Initializr选项"
-date: 2017-12-22 16:17:16
+title: IDEA新建项目时，没有Spring Initializr选项
 categories: IDEA
-tags: 
-	- 疑难杂症
+tags:
+  - 疑难杂症
+abbrlink: 6ed98f67
+date: 2017-12-22 16:17:16
 ---
 
 **IDEA新建项目时，没有Spring Initializr选项**

@@ -1,10 +1,10 @@
-
 ---
-title: "Tomcat实时日志查看"
-date: 2018-5-31 09:45:19
+title: Tomcat实时日志查看
 categories: Tomcat
-tags: 
-	- Tomcat
+tags:
+  - Tomcat
+abbrlink: 7526a581
+date: 2018-05-31 09:45:19
 ---
 
 **Tomcat实时日志查看**

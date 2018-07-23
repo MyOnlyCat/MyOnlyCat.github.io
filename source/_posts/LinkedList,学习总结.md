@@ -1,10 +1,10 @@
-
 ---
-title: "LinkedList,学习总结"
-date: 2018-1-22 10:46:07
+title: 'LinkedList,学习总结'
 categories: 数据结构
-tags: 
-	- LinkedList
+tags:
+  - LinkedList
+abbrlink: b0c11e4a
+date: 2018-01-22 10:46:07
 ---
 
 **学习链表结构的记录而已**

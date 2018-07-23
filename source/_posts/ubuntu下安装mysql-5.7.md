@@ -1,11 +1,11 @@
-
 ---
 layout: post
-title: "ubuntu下安装mysql-5.7"
-date: 2018-7-19 10:19:55
+title: ubuntu下安装mysql-5.7
 categories: Ubuntu
-tags: 
-		- Ubuntu
+tags:
+  - Ubuntu
+abbrlink: d7727b94
+date: 2018-07-19 10:19:55
 ---
 
 **今天看我盟哥在搭建到耍我也耍一哈,顺便记录下**

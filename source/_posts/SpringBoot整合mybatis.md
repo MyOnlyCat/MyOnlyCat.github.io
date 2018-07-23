@@ -1,11 +1,11 @@
-
 ---
-title: "SpringBoot整合mybatis"
-date: 2017-12-22 11:42:54
+title: SpringBoot整合mybatis
 categories: SoringBoot
-tags: 
-	- SpringBoot,
-	- mybatis
+tags:
+  - 'SpringBoot,'
+  - mybatis
+abbrlink: d4e7c35f
+date: 2017-12-22 11:42:54
 ---
 
 **SpringBoot整合mybatis,测试简单的CURD**

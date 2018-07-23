@@ -1,11 +1,11 @@
-
 ---
-title: "SpringBoot整合Redis"
-date: 2017-12-19 17:48:12
+title: SpringBoot整合Redis
 categories: SpringBoot
-tags: 
-		- SpringBoot, 
-		- Redis
+tags:
+  - 'SpringBoot,'
+  - Redis
+abbrlink: 4ebad2d4
+date: 2017-12-19 17:48:12
 ---
 
 **记录下第一整合过程**

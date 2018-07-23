@@ -1,10 +1,10 @@
-
 ---
-title: "我的IDEA常用插件"
-date: 2018-2-28 09:45
+title: 我的IDEA常用插件
+date: '2018-2-28 09:45'
 categories: IDEA
-tags: 
-	- IDEA
+tags:
+  - IDEA
+abbrlink: 9ea03639
 ---
 
 **记录下使用IDEA开发下常用的插件**

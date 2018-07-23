@@ -1,11 +1,11 @@
-
 ---
 title: SpringBoot异常统一处理
-date: 2017-12-18 11:40
+date: '2017-12-18 11:40'
 categories: SpringBoot
-tags: 
-		- SpringBoot, 
-		- 异常处理
+tags:
+  - 'SpringBoot,'
+  - 异常处理
+abbrlink: 5bde82b9
 ---
 
 **SpringBoot异常统一处理(初学记录下)**

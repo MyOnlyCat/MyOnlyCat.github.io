@@ -1,11 +1,11 @@
-
 ---
-title: "SpringBoot注解随记"
-date: 2017-12-15 20:14:52
+title: SpringBoot注解随记
 categories: SpringBoot
-tags: 
-		- SpringBoot,
-		- 注解
+tags:
+  - 'SpringBoot,'
+  - 注解
+abbrlink: 17a32c5f
+date: 2017-12-15 20:14:52
 ---
 
 

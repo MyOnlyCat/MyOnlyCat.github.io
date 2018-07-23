@@ -1,10 +1,10 @@
-
 ---
-title: "Ubuntu常用命令"
-date: 2018-6-19 14:03:49
+title: Ubuntu常用命令
 categories: Ubuntu常用命令
-tags: 
-	- Ubuntu
+tags:
+  - Ubuntu
+abbrlink: fa6c14b0
+date: 2018-06-19 14:03:49
 ---
 
 **Ubuntu常用命令**

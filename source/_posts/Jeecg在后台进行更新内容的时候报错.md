@@ -1,11 +1,10 @@
-
 ---
-title: "Jeecg在后台进行更新内容的时候报错"
-date: 2018-6-4 15:33:27
+title: Jeecg在后台进行更新内容的时候报错
 categories: Jeecg
-tags: 
-		- Jeecg
-
+tags:
+  - Jeecg
+abbrlink: 3de25220
+date: 2018-06-04 15:33:27
 ---
 
 **部署到Linux服务器在后台进行更新案例内容的时候出现下面这个错误**

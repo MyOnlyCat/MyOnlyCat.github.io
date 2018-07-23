@@ -1,11 +1,11 @@
-
 ---
 layout: post
-title: "HEXO博客搭建的坑"
-date: 2018-5-18 10:37:28
+title: HEXO博客搭建的坑
 categories: HEXO
-tags:	
-			-	HEXO
+tags:
+  - HEXO
+abbrlink: 254c3d71
+date: 2018-05-18 10:37:28
 ---
 
 

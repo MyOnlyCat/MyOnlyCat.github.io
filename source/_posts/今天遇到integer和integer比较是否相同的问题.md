@@ -1,10 +1,10 @@
-
 ---
-title: "integer和integer比较是否相同用==的问题"
-date: 2017-12-25 14:06:56
+title: integer和integer比较是否相同用==的问题
 categories: java开发遇到的问题
-tags: 
-	- 疑难杂症
+tags:
+  - 疑难杂症
+abbrlink: 79bb4db8
+date: 2017-12-25 14:06:56
 ---
 
 **integer和integer比较是否相同的问题**

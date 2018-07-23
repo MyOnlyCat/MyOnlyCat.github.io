@@ -1,10 +1,10 @@
-
 ---
-title: "SQL注入"
-date: 2018-7-4 12:52:31
+title: SQL注入
 categories: SQL注入
-tags: 
-	- SQL注入
+tags:
+  - SQL注入
+abbrlink: e73517db
+date: 2018-07-04 12:52:31
 ---
 
 **脚本小子之路,嘻嘻嘻**

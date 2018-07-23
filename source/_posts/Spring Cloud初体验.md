@@ -1,11 +1,11 @@
-
 ---
-title: "Spring Cloud初体验"
-date: 2017-12-25 15:08:21
+title: Spring Cloud初体验
 categories: Spring Cloud
-tags: 
-		- Spring,
-		- Cloud
+tags:
+  - 'Spring,'
+  - Cloud
+abbrlink: 213f2e85
+date: 2017-12-25 15:08:21
 ---
 
 **上周星期五的时候,完成了一次springcloud的小体验,现在把流程和想法记下来**

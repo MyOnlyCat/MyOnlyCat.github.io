@@ -1,11 +1,11 @@
-
 ---
-title: "Redis的更新策略"
-date: 2017-12-20 10:23:12
+title: Redis的更新策略
 categories: Redis
-tags: 
-	- SpringBoot, 
-	- Redis
+tags:
+  - 'SpringBoot,'
+  - Redis
+abbrlink: caef1698
+date: 2017-12-20 10:23:12
 ---
 
 

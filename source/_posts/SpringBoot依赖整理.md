@@ -1,11 +1,11 @@
-
 ---
-title: "SpringBoot依赖整理"
-date: 2017-12-19 14:09
+title: SpringBoot依赖整理
+date: '2017-12-19 14:09'
 categories: SpringBoot
-tags: 
-		- SpringBoot, 
-		- 依赖
+tags:
+  - 'SpringBoot,'
+  - 依赖
+abbrlink: ab1c9965
 ---
 
 **整理下吧**

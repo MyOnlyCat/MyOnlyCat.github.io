@@ -1,10 +1,10 @@
-
 ---
-title: "EGG框架在用forEach或者Map进行遍历调用async方法问题"
-date: 2018-7-4 10:20:50
+title: EGG框架在用forEach或者Map进行遍历调用async方法问题
 categories: EGG
-tags: 
-		- EGG
+tags:
+  - EGG
+abbrlink: 1de5170
+date: 2018-07-04 10:20:50
 ---
 
 **EGG框架在用forEach或者Map进行遍历调用async方法问题**

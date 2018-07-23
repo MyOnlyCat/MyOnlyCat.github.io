@@ -1,10 +1,10 @@
-
 ---
-title: "VI的一些常用命令"
-date: 2018-6-5 16:21:12
+title: VI的一些常用命令
 categories: VI
-tags: 
-	- VI
+tags:
+  - VI
+abbrlink: 88a972a3
+date: 2018-06-05 16:21:12
 ---
 
 **VI的一些常用命令**
