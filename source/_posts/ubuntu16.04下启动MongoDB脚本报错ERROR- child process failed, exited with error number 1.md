@@ -2,9 +2,9 @@
 ---
 title: "ubuntu16.04下启动MongoDB脚本报错ERROR: child process failed, exited with error number 1"
 date: 2018-7-23 09:34:51
-categories: ubuntu
+categories: Ubuntu
 tags: 
-		- ubuntu,
+		- Ubuntu,
 		- 疑难杂症
 ---
 
