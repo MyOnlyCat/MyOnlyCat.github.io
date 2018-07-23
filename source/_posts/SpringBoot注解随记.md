@@ -1,12 +1,13 @@
 
-﻿---
+---
 title: "SpringBoot注解随记"
 date: 2017-12-15 20:14:52
 categories: SpringBoot
 tags: 
-		- SpringBoot, 
+		- SpringBoot,
 		- 注解
 ---
+
 
 **记录一些工作中遇到的注解方便以后查找,2017年12月19日**
 <!--more-->

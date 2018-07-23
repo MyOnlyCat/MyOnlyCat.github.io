@@ -115,4 +115,10 @@ let content = await this.model.find(params,{name: 1, sex:1, identityNumber: 1});
             );
 ```
 
+### **`count`语句**
+
+```js
+await this.model.count(query); # query里面是查询条件,返回数量
+```
+
   [1]: http://static.zybuluo.com/pockadmin/6kku392uv4ws1e4yvawi5knr/image_1cgik7p5tg4l12n21kadqdof8j9.png
