@@ -83,6 +83,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/MyOnlyCat/MyOnlyCat.github.io.git
+  repo: 
+		github: https://github.com/MyOnlyCat/MyOnlyCat.github.io.git
   branch: master
   
