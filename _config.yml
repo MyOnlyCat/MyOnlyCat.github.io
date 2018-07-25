@@ -93,5 +93,5 @@ deploy:
 - type: baidu_url_submitter ## 这是新加的
   repo: 
 		github: https://github.com/MyOnlyCat/MyOnlyCat.github.io.git
-		coding: git@git.coding.net:pockadmin163com/MyOnlyCat.git
+		coding: git@git.coding.net:pockadmin163com/pockadmin163com.git
   branch: master
