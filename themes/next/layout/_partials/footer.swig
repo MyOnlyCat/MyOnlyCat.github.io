@@ -40,6 +40,12 @@
 #}</div>
 {% endif %}
 
+{% if theme.footer.powered and theme.footer.theme.enable %}
+  <span class="post-meta-divider">|</span>
+{% endif %}
+
+  <span>Hosted by <a href="https://pages.coding.me" >Coding Pages</a></span>
+
 {% if theme.footer.custom_text %}
   <div class="footer-custom">{#
   #}{{ theme.footer.custom_text }}{#
