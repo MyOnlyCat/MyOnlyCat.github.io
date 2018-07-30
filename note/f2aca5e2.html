@@ -96,7 +96,7 @@
 
 
 
-  <meta name="keywords" content="疑难杂症," />
+  <meta name="keywords" content="CTF," />
 
 
 
@@ -107,18 +107,23 @@
 
 
 
-<meta name="description" content="Spring Cloud自己学习的时候遇到的一些问题">
-<meta name="keywords" content="疑难杂症">
+<meta name="description" content="从现在开始每日一篇博客来记录CTF,今日题目—-层层递进">
+<meta name="keywords" content="CTF">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring Cloud自己学习的时候遇到的一些问题">
-<meta property="og:url" content="http://voidday.com/note/4551e774.html">
+<meta property="og:title" content="CTF 南京邮电题库之----层层递进">
+<meta property="og:url" content="http://voidday.com/note/f2aca5e2.html">
 <meta property="og:site_name" content="Aurora">
-<meta property="og:description" content="Spring Cloud自己学习的时候遇到的一些问题">
+<meta property="og:description" content="从现在开始每日一篇博客来记录CTF,今日题目—-层层递进">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-23T08:42:10.431Z">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/6ynreb8cw5v72nszgmch0b0w/image_1cjle1ti3s5bub01j5codq4hr9.png">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/kartkd275ybx1g1zrafpu6wp/image_1cjle4dcm1nve17u715carte2mm.png">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/u9xxqiwzmc8sj0j79ue7inwx/image_1cjlecqcncve10hsr0he921tim3j.png">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/32dsc5dlspvb99miw5apmiqq/image_1cjlepcpl7oob3n1bdf1jeq11f240.png">
+<meta property="og:updated_time" content="2018-07-30T11:43:11.453Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring Cloud自己学习的时候遇到的一些问题">
-<meta name="twitter:description" content="Spring Cloud自己学习的时候遇到的一些问题">
+<meta name="twitter:title" content="CTF 南京邮电题库之----层层递进">
+<meta name="twitter:description" content="从现在开始每日一篇博客来记录CTF,今日题目—-层层递进">
+<meta name="twitter:image" content="http://static.zybuluo.com/pockadmin/6ynreb8cw5v72nszgmch0b0w/image_1cjle1ti3s5bub01j5codq4hr9.png">
 
 
 
@@ -148,13 +153,13 @@
 
 
 
-  <link rel="canonical" href="http://voidday.com/note/4551e774.html"/>
+  <link rel="canonical" href="http://voidday.com/note/f2aca5e2.html"/>
 
 
 
 
 
-  <title>Spring Cloud自己学习的时候遇到的一些问题 | Aurora</title>
+  <title>CTF 南京邮电题库之----层层递进 | Aurora</title>
   
 
 
@@ -281,7 +286,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://voidday.com/note/4551e774.html">
+    <link itemprop="mainEntityOfPage" href="http://voidday.com/note/f2aca5e2.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pock">
@@ -298,7 +303,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Spring Cloud自己学习的时候遇到的一些问题</h1>
+          <h1 class="post-title" itemprop="name headline">CTF 南京邮电题库之----层层递进</h1>
         
 
         <div class="post-meta">
@@ -310,8 +315,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T18:30:42+08:00">
-                2017-12-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-30T19:07:22+08:00">
+                2018-07-30
               </time>
             
 
@@ -333,8 +338,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring-Cloud/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring Cloud</span>
+                  <a href="/categories/CTF/" itemprop="url" rel="index">
+                    <span itemprop="name">CTF</span>
                   </a>
                 </span>
 
@@ -351,9 +356,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/note/4551e774.html#comments" itemprop="discussionUrl">
+                <a href="/note/f2aca5e2.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="note/4551e774.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="note/f2aca5e2.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -375,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  114
+                  182
                 </span>
               
 
@@ -412,19 +417,26 @@
       
 
       
-        <p><strong>Spring Cloud自己学习的时候遇到的一些问题</strong><br><a id="more"></a></p>
-<h3 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h3><ul>
-<li><code>pom.xml</code>引起问题的配置部分如下:</li>
+        <p><strong>从现在开始每日一篇博客来记录CTF,今日题目—-层层递进</strong><br><a id="more"></a></p>
+<h2 id="0X00-题目概要"><a href="#0X00-题目概要" class="headerlink" title="0X00 题目概要"></a>0X00 题目概要</h2><blockquote>
+<p><img src="http://static.zybuluo.com/pockadmin/6ynreb8cw5v72nszgmch0b0w/image_1cjle1ti3s5bub01j5codq4hr9.png" alt="image_1cjle1ti3s5bub01j5codq4hr9.png-26.1kB"></p>
+</blockquote>
+<h2 id="0X01-题目网站内容"><a href="#0X01-题目网站内容" class="headerlink" title="0X01 题目网站内容"></a>0X01 题目网站内容</h2><p><img src="http://static.zybuluo.com/pockadmin/kartkd275ybx1g1zrafpu6wp/image_1cjle4dcm1nve17u715carte2mm.png" alt="image_1cjle4dcm1nve17u715carte2mm.png-545kB"></p>
+<h2 id="0X02-解题过程"><a href="#0X02-解题过程" class="headerlink" title="0X02 解题过程"></a>0X02 解题过程</h2><h3 id="0X00-找"><a href="#0X00-找" class="headerlink" title="0X00 找!"></a>0X00 找!</h3><ul>
+<li>浏览了一遍F12,没法现什么有用的东西,我一度以为地址变了,怀疑的一B</li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>Brixton.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>报错内容</li>
+<h3 id="0X01-Network发现奇怪的东西"><a href="#0X01-Network发现奇怪的东西" class="headerlink" title="0X01 Network发现奇怪的东西?"></a>0X01 Network发现奇怪的东西?</h3><ul>
+<li><p>源码不管用了,我就看看网站加载了什么东西,在Network发现加载了一个<code>404.html</code>,内容也有点奇怪:<br><img src="http://static.zybuluo.com/pockadmin/u9xxqiwzmc8sj0j79ue7inwx/image_1cjlecqcncve10hsr0he921tim3j.png" alt="image_1cjlecqcncve10hsr0he921tim3j.png-86.2kB"></p>
+</li>
+<li><p>加载这么多的jQuery干嘛?????,定眼一看,jQuery的名字好奇怪哦什么-n -c 的哦,??????,在一看这不是flage吗?<strong>每个jQuery后面的-后面的字母拼起来就是答案</strong></p>
+<blockquote>
+<p><img src="http://static.zybuluo.com/pockadmin/32dsc5dlspvb99miw5apmiqq/image_1cjlepcpl7oob3n1bdf1jeq11f240.png" alt="image_1cjlepcpl7oob3n1bdf1jeq11f240.png-12.5kB"></p>
+</blockquote>
+</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Attribute <span class="string">'value'</span> in annotation [org.springframework.cloud.netflix.feign.FeignClient] must be declared as an <span class="meta">@AliasFor</span> [serviceId], not [name].</span><br></pre></td></tr></table></figure>
-<ul>
-<li>解决方法</li>
+<h2 id="0X03-总结"><a href="#0X03-总结" class="headerlink" title="0X03 总结"></a>0X03 总结</h2><ul>
+<li>感觉没有层层递进啊……….</li>
 </ul>
-<p>将Spring Cloud版本改为 <code>Brixton.SR5</code> 或 <code>Camden.RELEASE</code> ，即可解决此问题。</p>
 
       
     </div>
@@ -442,7 +454,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/疑难杂症/" rel="tag"># 疑难杂症</a>
+            <a href="/tags/CTF/" rel="tag"># CTF</a>
           
         </div>
       
@@ -455,8 +467,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/note/6ed98f67.html" rel="next" title="IDEA新建项目时，没有Spring Initializr选项">
-                <i class="fa fa-chevron-left"></i> IDEA新建项目时，没有Spring Initializr选项
+              <a href="/note/f45ebcce.html" rel="next" title="CTF 题库记录">
+                <i class="fa fa-chevron-left"></i> CTF 题库记录
               </a>
             
           </div>
@@ -464,10 +476,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/note/79bb4db8.html" rel="prev" title="integer和integer比较是否相同用==的问题">
-                integer和integer比较是否相同用==的问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -625,7 +633,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Feign"><span class="nav-number">1.</span> <span class="nav-text">Feign</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0X00-题目概要"><span class="nav-number">1.</span> <span class="nav-text">0X00 题目概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0X01-题目网站内容"><span class="nav-number">2.</span> <span class="nav-text">0X01 题目网站内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0X02-解题过程"><span class="nav-number">3.</span> <span class="nav-text">0X02 解题过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0X00-找"><span class="nav-number">3.1.</span> <span class="nav-text">0X00 找!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0X01-Network发现奇怪的东西"><span class="nav-number">3.2.</span> <span class="nav-text">0X01 Network发现奇怪的东西?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0X03-总结"><span class="nav-number">4.</span> <span class="nav-text">0X03 总结</span></a></li></ol></div>
             
 
           </div>
@@ -796,9 +804,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://voidday.com/note/4551e774.html';
-          this.page.identifier = 'note/4551e774.html';
-          this.page.title = 'Spring Cloud自己学习的时候遇到的一些问题';
+          this.page.url = 'http://voidday.com/note/f2aca5e2.html';
+          this.page.identifier = 'note/f2aca5e2.html';
+          this.page.title = 'CTF 南京邮电题库之----层层递进';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://pockadmin.disqus.com/embed.js';
