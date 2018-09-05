@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://voidday.com/note/eae56122.html</loc>
+    <lastmod>2018-09-05T09:26:57.775Z</lastmod>
+    <data>
+        <display>
+        <title>SpringBoot 整合druid</title>
+        <pubTime>2018-09-05T09:14:14.000Z</pubTime>
+        
+        <tag>SpringBoot</tag>
+         
+         
+           
+             
+              <breadCrumb title="SpringBoot" url="http://voidday.com/categories/SpringBoot/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://voidday.com/note/873aa52d.html</loc>
+    <lastmod>2018-09-05T09:26:57.767Z</lastmod>
+    <data>
+        <display>
+        <title>Mysql 8.0 配置主从备份</title>
+        <pubTime>2018-08-30T02:32:42.000Z</pubTime>
+        
+        <tag>Mysql</tag>
+         
+         
+           
+             
+              <breadCrumb title="Mysql" url="http://voidday.com/categories/Mysql/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://voidday.com/note/54405304.html</loc>
     <lastmod>2018-08-31T02:18:30.940Z</lastmod>
     <data>

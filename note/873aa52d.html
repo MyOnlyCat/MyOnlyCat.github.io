@@ -96,7 +96,7 @@
 
 
 
-  <meta name="keywords" content="SpringBoot,,异常处理," />
+  <meta name="keywords" content="Mysql," />
 
 
 
@@ -107,22 +107,23 @@
 
 
 
-<meta name="description" content="SpringBoot异常统一处理(初学记录下)">
-<meta name="keywords" content="SpringBoot,,异常处理">
+<meta name="description" content="新的架构需要读写分离,这里配置下主从备份">
+<meta name="keywords" content="Mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringBoot异常统一处理">
-<meta property="og:url" content="http://voidday.com/note/5bde82b9.html">
+<meta property="og:title" content="Mysql 8.0 配置主从备份">
+<meta property="og:url" content="http://voidday.com/note/873aa52d.html">
 <meta property="og:site_name" content="Aurora">
-<meta property="og:description" content="SpringBoot异常统一处理(初学记录下)">
+<meta property="og:description" content="新的架构需要读写分离,这里配置下主从备份">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://static.zybuluo.com/pockadmin/3a1ofdtjiqrbfyhtz9t30vp6/1.png">
-<meta property="og:image" content="http://static.zybuluo.com/pockadmin/foyhnhfbsuri2fcfgbpxzakk/2.png">
-<meta property="og:image" content="http://static.zybuluo.com/pockadmin/dr3lpm17ew4ijfz3hmldblte/3.png">
-<meta property="og:updated_time" content="2018-07-23T08:42:10.525Z">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/09aehy7hs4qguqky6jiogwe2/image_1cmkd9ofb1qql1pb4s14hkk1qjhp.png">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/mxibqo8hu1x57ycl99k5c6l1/image_1cmkddd4ekmr13631p4l75u1knl36.png">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/thzd6ivu2jzxw2ietcxsquys/image_1cmkea5t91h2mkvsd2clu25hd3j.png">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/s1l86sstfp9q48kiy1yb6z9h/image_1cmkfmujg1eei17pfsqh1nko16rn9.png">
+<meta property="og:updated_time" content="2018-09-05T09:26:57.767Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SpringBoot异常统一处理">
-<meta name="twitter:description" content="SpringBoot异常统一处理(初学记录下)">
-<meta name="twitter:image" content="http://static.zybuluo.com/pockadmin/3a1ofdtjiqrbfyhtz9t30vp6/1.png">
+<meta name="twitter:title" content="Mysql 8.0 配置主从备份">
+<meta name="twitter:description" content="新的架构需要读写分离,这里配置下主从备份">
+<meta name="twitter:image" content="http://static.zybuluo.com/pockadmin/09aehy7hs4qguqky6jiogwe2/image_1cmkd9ofb1qql1pb4s14hkk1qjhp.png">
 
 
 
@@ -152,13 +153,13 @@
 
 
 
-  <link rel="canonical" href="http://voidday.com/note/5bde82b9.html"/>
+  <link rel="canonical" href="http://voidday.com/note/873aa52d.html"/>
 
 
 
 
 
-  <title>SpringBoot异常统一处理 | Aurora</title>
+  <title>Mysql 8.0 配置主从备份 | Aurora</title>
   
 
 
@@ -285,7 +286,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://voidday.com/note/5bde82b9.html">
+    <link itemprop="mainEntityOfPage" href="http://voidday.com/note/873aa52d.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pock">
@@ -302,7 +303,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SpringBoot异常统一处理</h1>
+          <h1 class="post-title" itemprop="name headline">Mysql 8.0 配置主从备份</h1>
         
 
         <div class="post-meta">
@@ -314,8 +315,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T11:40:00+08:00">
-                2017-12-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-30T10:32:42+08:00">
+                2018-08-30
               </time>
             
 
@@ -337,8 +338,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SpringBoot/" itemprop="url" rel="index">
-                    <span itemprop="name">SpringBoot</span>
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
                   </a>
                 </span>
 
@@ -355,9 +356,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/note/5bde82b9.html#comments" itemprop="discussionUrl">
+                <a href="/note/873aa52d.html#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="note/5bde82b9.html" itemprop="commentCount"></span>
+                        data-disqus-identifier="note/873aa52d.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -379,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  310
+                  467
                 </span>
               
 
@@ -395,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -416,16 +417,54 @@
       
 
       
-        <p><strong>SpringBoot异常统一处理(初学记录下)</strong><br><a id="more"></a></p>
-<h3 id="1-建立测试异常"><a href="#1-建立测试异常" class="headerlink" title="1.建立测试异常"></a>1.建立测试异常</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/ecpc"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/ecpc1"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">ecpcTest</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"发生错误"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不进行处理的话访问 <code>http://localhost:8080/ecpc/ecpc1</code>,会出下面的界面</p>
-<p><img src="http://static.zybuluo.com/pockadmin/3a1ofdtjiqrbfyhtz9t30vp6/1.png" alt="1.png-14.7kB"></p>
-<h3 id="2-统一异常处理类"><a href="#2-统一异常处理类" class="headerlink" title="2.统一异常处理类"></a>2.统一异常处理类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestControllerAdvice</span> <span class="comment">//定义统一的异常处理类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Logger log = LoggerFactory.getLogger(<span class="string">"GlobalExceptionHandler"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(value = Exception.class ) <span class="comment">//定义针对的异常类型,这里捕获Exception类型和其所用子异常</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">errorHandler</span><span class="params">(HttpServletRequest req, Exception e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        log.error(<span class="string">"---DefaultException Handler---Host &#123;&#125; invokes url &#123;&#125; ERROR: &#123;&#125;"</span>,req.getRemoteHost(),req.getRequestURL(),e.getMessage());</span><br><span class="line">        <span class="keyword">return</span> e.getMessage();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p><strong>新的架构需要读写分离,这里配置下主从备份</strong><br><a id="more"></a></p>
+<h2 id="my-ini文件的位置"><a href="#my-ini文件的位置" class="headerlink" title="my.ini文件的位置"></a>my.ini文件的位置</h2><ul>
+<li><p>mysql 8.0安装完过后没有my.ini疑惑了我好久,最后发现,配置文件在,C盘的一个隐藏文件夹里面<br><img src="http://static.zybuluo.com/pockadmin/09aehy7hs4qguqky6jiogwe2/image_1cmkd9ofb1qql1pb4s14hkk1qjhp.png" alt="image_1cmkd9ofb1qql1pb4s14hkk1qjhp.png-19.4kB"></p>
+</li>
+<li><p>具体路径如下图<br><img src="http://static.zybuluo.com/pockadmin/mxibqo8hu1x57ycl99k5c6l1/image_1cmkddd4ekmr13631p4l75u1knl36.png" alt="image_1cmkddd4ekmr13631p4l75u1knl36.png-21.2kB"></p>
+</li>
+</ul>
+<h2 id="主库配置"><a href="#主库配置" class="headerlink" title="主库配置"></a>主库配置</h2><h3 id="修改主库INI文件"><a href="#修改主库INI文件" class="headerlink" title="修改主库INI文件"></a>修改主库INI文件</h3><ul>
+<li><p>在<code>[mysqld]</code>节点添加如下代码:</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#主节点(Master)配置</span></span><br><span class="line"><span class="comment"># Binary Logging.</span></span><br><span class="line"><span class="comment">#二进制文件存放路径</span></span><br><span class="line"><span class="attr">log-bin</span>=mysql-bin </span><br><span class="line"></span><br><span class="line"><span class="comment"># Server Id.</span></span><br><span class="line"><span class="comment">#服务器 id</span></span><br><span class="line"><span class="attr">server-id</span>=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>mysql-bin</code>这个文件夹我是创建在我的mysql安装目录的,暂时不知道有没有用</p>
+</li>
+</ul>
+<h3 id="主库创建复制操作用户"><a href="#主库创建复制操作用户" class="headerlink" title="主库创建复制操作用户"></a>主库创建复制操作用户</h3><ul>
+<li>这个用户主要用于连接主库,进行复制操作</li>
+</ul>
+<blockquote>
+<p>创建用户<br>mysql&gt; CREATE USER ‘需要添加的用户名‘@’从库IP地址’ IDENTIFIED WITH mysql_native_password BY ‘用户密码’;<br>修改权限<br>mysql&gt; GRANT REPLICATION SLAVE ON <em>.</em> TO ‘用户名‘@’从库IP地址’;<br>刷新配置<br>mysql&gt; flush privileges;</p>
+</blockquote>
+<h3 id="获取主节点当前binary-log文件名和位置（position）"><a href="#获取主节点当前binary-log文件名和位置（position）" class="headerlink" title="获取主节点当前binary log文件名和位置（position）"></a>获取主节点当前binary log文件名和位置（position）</h3><blockquote>
+<p>mysql&gt; SHOW MASTER STATUS;</p>
+</blockquote>
 <ul>
-<li><code>@RestControllerAdvice</code>  表明GlobalExceptionHandler 是一个全局的异常处理器,也是是一个 RESTful Controller, 即它会以 RESTful 的形式返回回复.(类注解, 作用于 整个 Spring 工程. ControllerAdvice 注解定义了一个全局的异常处理器,如果你们的异常需要返回页面啊之类的，你可以使用@ControllerAdvice分别定制。)</li>
-<li><code>ExceptionHandler(value = Exception.class )</code> 表示 defaultErrorHandler 会处理 Exception 异常和其所用子异常(作用于 Controller 级别. ExceptionHandler 注解为一个 Controler 定义一个异常处理器)</li>
-<li>捕获效果如图:<br><img src="http://static.zybuluo.com/pockadmin/foyhnhfbsuri2fcfgbpxzakk/2.png" alt="2.png-11.2kB"></li>
-<li>控制台打印效果如图:<br><img src="http://static.zybuluo.com/pockadmin/dr3lpm17ew4ijfz3hmldblte/3.png" alt="3.png-6.7kB"></li>
+<li><p>一般结果如下图:<br><img src="http://static.zybuluo.com/pockadmin/thzd6ivu2jzxw2ietcxsquys/image_1cmkea5t91h2mkvsd2clu25hd3j.png" alt="image_1cmkea5t91h2mkvsd2clu25hd3j.png-8.7kB"></p>
+</li>
+<li><p>需要记录一下 <code>File</code> 和 <code>Position</code> 的字段信息</p>
+</li>
+</ul>
+<h2 id="从库配置"><a href="#从库配置" class="headerlink" title="从库配置"></a>从库配置</h2><h3 id="配置INI文件"><a href="#配置INI文件" class="headerlink" title="配置INI文件"></a>配置INI文件</h3><ul>
+<li>在<code>[mysqld]</code>节点添加如下代码:</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#从节点(Master)配置</span></span><br><span class="line"><span class="comment"># Server Id.</span></span><br><span class="line"><span class="attr">server-id</span>=<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h3 id="从库设置主库参数"><a href="#从库设置主库参数" class="headerlink" title="从库设置主库参数"></a>从库设置主库参数</h3><blockquote>
+<p>mysql&gt;CHANGE MASTER TO<br>        MASTER_HOST=’主库IP地址’,<br>        MASTER_USER=’主库刚刚添加的用户名’,<br>        MASTER_PASSWORD=’密码’,<br>        MASTER_LOG_FILE=’记录的File值’,<br>        MASTER_LOG_POS=记录的Position值(不加引号直接写数字);</p>
+</blockquote>
+<h3 id="开启同步"><a href="#开启同步" class="headerlink" title="开启同步"></a>开启同步</h3><blockquote>
+<p>mysql&gt;start slave;</p>
+</blockquote>
+<h3 id="检查是否连接上主节点"><a href="#检查是否连接上主节点" class="headerlink" title="检查是否连接上主节点"></a>检查是否连接上主节点</h3><blockquote>
+<p>mysql&gt;show slave status\G;</p>
+</blockquote>
+<p><img src="http://static.zybuluo.com/pockadmin/s1l86sstfp9q48kiy1yb6z9h/image_1cmkfmujg1eei17pfsqh1nko16rn9.png" alt="image_1cmkfmujg1eei17pfsqh1nko16rn9.png-1.6kB"></p>
+<ul>
+<li><p>这两个参数正常就OK了,接下来就是测试了</p>
+</li>
+<li><p>检查是否已链接上主节点，根据里面的错误信息修改配置。确保master防火墙关闭，确保<code>my.ing</code>里面的server-id不重复,<code>C:\ProgramData\MySQL\MySQL Server 8.0\Data</code>里面的<code>auto.cnf</code>里面的uuid不重复。</p>
+</li>
 </ul>
 
       
@@ -444,9 +483,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/SpringBoot/" rel="tag"># SpringBoot,</a>
-          
-            <a href="/tags/异常处理/" rel="tag"># 异常处理</a>
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
           
         </div>
       
@@ -459,8 +496,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/note/17a32c5f.html" rel="next" title="SpringBoot注解随记">
-                <i class="fa fa-chevron-left"></i> SpringBoot注解随记
+              <a href="/note/54405304.html" rel="next" title="Json Web Token 学习">
+                <i class="fa fa-chevron-left"></i> Json Web Token 学习
               </a>
             
           </div>
@@ -469,8 +506,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/note/de8bd00d.html" rel="prev" title="SpringBoot启动报错The import org.springframework.data.repository.query.Param cannot be resolved">
-                SpringBoot启动报错The import org.springframework.data.repository.query.Param cannot be resolved <i class="fa fa-chevron-right"></i>
+              <a href="/note/eae56122.html" rel="prev" title="SpringBoot 整合druid">
+                SpringBoot 整合druid <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -629,7 +666,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-建立测试异常"><span class="nav-number">1.</span> <span class="nav-text">1.建立测试异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-统一异常处理类"><span class="nav-number">2.</span> <span class="nav-text">2.统一异常处理类</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-ini文件的位置"><span class="nav-number">1.</span> <span class="nav-text">my.ini文件的位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主库配置"><span class="nav-number">2.</span> <span class="nav-text">主库配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改主库INI文件"><span class="nav-number">2.1.</span> <span class="nav-text">修改主库INI文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主库创建复制操作用户"><span class="nav-number">2.2.</span> <span class="nav-text">主库创建复制操作用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取主节点当前binary-log文件名和位置（position）"><span class="nav-number">2.3.</span> <span class="nav-text">获取主节点当前binary log文件名和位置（position）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从库配置"><span class="nav-number">3.</span> <span class="nav-text">从库配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置INI文件"><span class="nav-number">3.1.</span> <span class="nav-text">配置INI文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从库设置主库参数"><span class="nav-number">3.2.</span> <span class="nav-text">从库设置主库参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启同步"><span class="nav-number">3.3.</span> <span class="nav-text">开启同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查是否连接上主节点"><span class="nav-number">3.4.</span> <span class="nav-text">检查是否连接上主节点</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -800,9 +837,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://voidday.com/note/5bde82b9.html';
-          this.page.identifier = 'note/5bde82b9.html';
-          this.page.title = 'SpringBoot异常统一处理';
+          this.page.url = 'http://voidday.com/note/873aa52d.html';
+          this.page.identifier = 'note/873aa52d.html';
+          this.page.title = 'Mysql 8.0 配置主从备份';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://pockadmin.disqus.com/embed.js';
