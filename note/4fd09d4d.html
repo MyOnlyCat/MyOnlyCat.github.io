@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="hP9LTnqXjN" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Yellowtail:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Mysql," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="做学习记录">
+<meta name="keywords" content="Mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql索引基数">
+<meta property="og:url" content="http://voidday.com/note/4fd09d4d.html">
+<meta property="og:site_name" content="Aurora">
+<meta property="og:description" content="做学习记录">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/1qnjmidksmzggqdzmqi9my7j/image_1cofe5jnk192le3vbe8qrr1nbi9.png">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/oyl3455ww8al4aud3r99dszs/image_1cofhshgb18jmknjgos156p1911m.png">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/59ei6nzqk2bdrndzum2ldubc/image_1cofhvqi41u4b7hrotq15b1nn913.png">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/6y2in7wy4mf7fa81xg5mrg5e/image_1cofi3knf1iislc1eoq165hm5t1g.png">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/dzxhewx0sprmftyedw60gaip/image_1cofi8e961p191ct51l0oah91l363d.png">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/o6d5een5kaa540lpyot8j9ih/image_1cofihbdn563n6og7k1ej3ej86q.png">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/iup1wdom17lcilj30wamuwd1/image_1cofikb4cmvvsba1k6q1fqduka7n.png">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/m27kpbvewrztak3fw18l85tr/image_1cofk8gco1mh01r339nqn3k1gnv84.png">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/hji6cpn85pxymh5v3psr9x9x/image_1cofnnsbsbig211rlb15fo1i568h.png">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/f80921xsxhd3rrrb2ajh711z/image_1cofod75a1jumh0ip7aqq5lun8u.png">
+<meta property="og:image" content="http://static.zybuluo.com/pockadmin/3ennsaferaae4uncnpwl5fvb/image_1cofpujnu17ne1p7s1fjer5gjji9b.png">
+<meta property="og:updated_time" content="2018-09-29T02:45:26.420Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql索引基数">
+<meta name="twitter:description" content="做学习记录">
+<meta name="twitter:image" content="http://static.zybuluo.com/pockadmin/1qnjmidksmzggqdzmqi9my7j/image_1cofe5jnk192le3vbe8qrr1nbi9.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://voidday.com/note/4fd09d4d.html"/>
+
+
+
+
+
+  <title>Mysql索引基数 | Aurora</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Aurora</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://voidday.com/note/4fd09d4d.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pock">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/by.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aurora">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mysql索引基数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T10:50:42+08:00">
+                2018-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/note/4fd09d4d.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="note/4fd09d4d.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,947
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>做学习记录</strong><br><a id="more"></a></p>
+<h2 id="0X00-在Mysql中的索引分类"><a href="#0X00-在Mysql中的索引分类" class="headerlink" title="0X00 在Mysql中的索引分类"></a>0X00 在Mysql中的索引分类</h2><h3 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h3><ul>
+<li>主键索引(Primary Key)<ul>
+<li>一张表中只能有一个主键索引</li>
+<li>一般情况下不需要人工去设置主键索引,因为默认主键有索引</li>
+<li>主键索引也是唯一的,不允许重复的索引</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<h3 id="常规索引"><a href="#常规索引" class="headerlink" title="常规索引"></a>常规索引</h3><ul>
+<li>常规索引(普通索引,index或key)<ul>
+<li>一张表中可以有多个常规索引</li>
+<li>常规索引可以用于重复字段,例如年级表中的班级字段</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<h3 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h3><ul>
+<li>唯一索引(Unique Key)<ul>
+<li>一张表中也可以有多个唯一索引,但是唯一索引的字段不能包含重复值,例如年级表中的班级字段在表中肯定会重复出现,索引班级字段不能当做唯一索引</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<h3 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h3><ul>
+<li>全文索引(Full Text)<ul>
+<li>表示 全文搜索的索引,FULLTEXT用于搜索很长一篇文章的时候,效果最好</li>
+<li>用在比较短的文本，如果就一两行字的,普通的 INDEX 也可以</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<h3 id="复合索引-联合索引-组合索引"><a href="#复合索引-联合索引-组合索引" class="headerlink" title="复合索引(联合索引,组合索引)"></a>复合索引(联合索引,组合索引)</h3><ul>
+<li><p>复合索引,这个知识比较多</p>
+<ul>
+<li>两个或更多个列上的索引被称作复合索引,如<strong><code>（index_A,index_B,index_C）</code></strong></li>
+<li>复合索引在数据库操作期间所需的开销更小,可以代替多个单一索引;</li>
+<li>同时有两个概念叫做<code>窄索引</code>和<code>宽索引</code>,<code>窄索引</code>是指索引列为1-2列的索引,<code>宽索引</code>也就是索引列超过2的索引;</li>
+<li>设计索引的一个重要原则就是能用<code>窄索引</code>不用<code>宽索引</code>,因为<code>窄索引</code>往往比<code>组合索引</code>更有效;</li>
+<li><p>组合索引遵循<strong><code>最左原则</code></strong>,当建立索引<strong><code>（index_A,index_B,index_C）</code></strong>时,<strong>有效</strong>索引为<strong><code>(index_A)</code>,<code>(index_A,index_B)</code>,(index_A,index_C),(index_A,index_B,index_C)</strong>,<strong>无效</strong>索引为<strong><code>(index_B)</code>,<code>(index_C)</code>,<code>(index_B,index_C)</code></strong>,下面有实际例子<br><br></p>
+<blockquote>
+<p>单独使用字段<code>index_A</code>,可以看到type为<strong>ref</strong>使用了索引<br><img src="http://static.zybuluo.com/pockadmin/1qnjmidksmzggqdzmqi9my7j/image_1cofe5jnk192le3vbe8qrr1nbi9.png" alt="image_1cofe5jnk192le3vbe8qrr1nbi9.png-19kB"><br><br><br>单独使用字段<code>index_B</code>,可以看到type为<strong>index</strong>,之比ALL好一点,但是还是扫描的全表,效率不行<br><img src="http://static.zybuluo.com/pockadmin/oyl3455ww8al4aud3r99dszs/image_1cofhshgb18jmknjgos156p1911m.png" alt="image_1cofhshgb18jmknjgos156p1911m.png-18.4kB"><br><br><br>单独使用字段<code>index_C</code>,可以看到type为<strong>index</strong>,之比ALL好一点,但是还是扫描的全表,效率不行<br><img src="http://static.zybuluo.com/pockadmin/59ei6nzqk2bdrndzum2ldubc/image_1cofhvqi41u4b7hrotq15b1nn913.png" alt="image_1cofhvqi41u4b7hrotq15b1nn913.png-19.6kB"><br><br><br>使用组合字段,<code>(index_A,index_B)</code>,可以看到type为<strong>ref</strong>使用了索引<br><img src="http://static.zybuluo.com/pockadmin/6y2in7wy4mf7fa81xg5mrg5e/image_1cofi3knf1iislc1eoq165hm5t1g.png" alt="image_1cofi3knf1iislc1eoq165hm5t1g.png-19.2kB"><br><br><br>使用组合字段,<code>(index_A,index_C)</code>,可以看到type为<strong>ref</strong>使用了索引<br><img src="http://static.zybuluo.com/pockadmin/dzxhewx0sprmftyedw60gaip/image_1cofi8e961p191ct51l0oah91l363d.png" alt="image_1cofi8e961p191ct51l0oah91l363d.png-19.3kB"><br><br><br>使用组合字段,<code>(index_A,index_B,index_C)</code>,可以看到type为<strong>ref</strong>使用了索引<br><img src="http://static.zybuluo.com/pockadmin/o6d5een5kaa540lpyot8j9ih/image_1cofihbdn563n6og7k1ej3ej86q.png" alt="image_1cofihbdn563n6og7k1ej3ej86q.png-19kB"><br><br><br>使用组合字段,<code>(index_B,index_C)</code>,可以看到type为<strong>index</strong>,之比ALL好一点,但是还是扫描的全表,效率不行<br><img src="http://static.zybuluo.com/pockadmin/iup1wdom17lcilj30wamuwd1/image_1cofikb4cmvvsba1k6q1fqduka7n.png" alt="image_1cofikb4cmvvsba1k6q1fqduka7n.png-19.9kB"></p>
+</blockquote>
+</li>
+<li><p><a href="https://blog.csdn.net/j_mani/article/details/79498148" target="_blank" rel="noopener">更多资料</a>sql查询用到索引的条件是必须要遵守最左前缀原则，为什么上面有些查询还能用到index类型的索引？</p>
+<ul>
+<li>上面查询<code>type</code>字段分别有: <strong>index,ref</strong></li>
+<li><strong>解释</strong>: <code>index</code>：这种类型表示是mysql会对整个该索引进行扫描。要想用到这种类型的索引，对这个索引并无特别要求，只要是索引，或者某个复合索引的一部分，mysql都可能会采用index类型的方式扫描。但是呢，缺点是效率不高，mysql会从索引中的第一个数据一个个的查找到最后一个数据，直到找到符合判断条件的某个索引。</li>
+<li>所以当使用字段<strong><code>index_B</code></strong>时,sql语句为<code>SELECT * FROM test_index WHERE index_B = &#39;b&#39;</code>,索引为<strong><code>(index_A,index_B,index_C)</code></strong>,<strong><code>index_B</code></strong>为复合索引的一部分,没有问题,可以进行index类型的索引扫描方式。explain显示结果使用到了索引，是index类型的方式。</li>
+<li><strong>解释</strong>: <code>ref</code>:这种类型表示mysql会根据特定的算法快速查找到某个符合条件的索引，而不是会对索引中每一个数据都进行一一的扫描判断，也就是所谓你平常理解的使用索引查询会更快的取出数据。而要想实现这种查找，索引却是有要求的，要实现这种能快速查找的算法，索引就要满足特定的数据结构。简单说，也就是索引字段的数据必须是<strong>有序的</strong>，才能实现这种类型的查找，才能利用到索引。</li>
+<li><strong>疑问:</strong> 索引不都是进行了有序排序吗?</li>
+<li><strong>解释:</strong> 在单个索引下,索引的字段肯定是有序排序的,但是在复合索引下情况就不一样了,复合索引中排序方式也是按照<strong>最左原则</strong>,比如上面例子的复合索引,排序就是排序最左的<code>index_A</code>,所以第一个<code>index_A</code>字段是绝对有序的，而第二字段就是无序的了。所以通常情况下，直接使用第二个<code>index_B</code>字段进行条件判断是用不到索引的，当然，可能会出现上面的使用index类型的索引。这就是所谓的mysql为什么要强调最左前缀原则的原因。</li>
+</ul>
+</li>
+<li><p>复合索引可以和<strong>唯一索引</strong>结合在一起使用,也可以和<strong>常规索引</strong>结合一起使用,比如和<strong>唯一索引</strong>结合一起使用时,必须保证两个索引的字段在表中都不包含重复值,常规索引则满足常规索引要求即可</p>
+</li>
+<li><p>这个其实不应该算到索引分类里面的,因为这个相当于结合体</p>
+</li>
+<li><p>最后引用博主<a href="https://www.cnblogs.com/sunflower627/p/7610211.html" target="_blank" rel="noopener">SunnyAmy的图片</a><br><img src="http://static.zybuluo.com/pockadmin/m27kpbvewrztak3fw18l85tr/image_1cofk8gco1mh01r339nqn3k1gnv84.png" alt="image_1cofk8gco1mh01r339nqn3k1gnv84.png-15.4kB"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="外键索引"><a href="#外键索引" class="headerlink" title="外键索引"></a>外键索引</h3><ul>
+<li>外键索引(外键索引)<ul>
+<li>外键索引我暂时没有接触过这里引用下<a href="https://www.jb51.net/article/133626.htm" target="_blank" rel="noopener">脚本之家</a>中的介绍吧</li>
+<li>外键索引（Foreign Key），简称外键，它可以提高查询效率，外键会自动和对应的其他表的主键关联。外键的主要作用是保证记录的一致性和完整性</li>
+<li>注意：只有InnoDB存储引擎的表才支持外键。外键字段如果没有指定索引名称，会自动生成。如果要删除父表（如分类表）中的记录，必须先删除子表（带外键的表，如文章表）中的相应记录，否则会出错。 创建表的时候，可以给字段设置外键，如 foreign key(cate_id) references cms_cate(id)，由于外键的效率并不是很好，因此并不推荐使用外键，但我们要使用外键的思想来保证数据的一致性和完整性。</li>
+</ul>
+</li>
+</ul>
+<h2 id="复合索引的排序选择"><a href="#复合索引的排序选择" class="headerlink" title="复合索引的排序选择"></a>复合索引的排序选择</h2><ul>
+<li>由于复合索引东西有点多,这里在补充一下</li>
+</ul>
+<h3 id="怎样去选择合适的索引列顺序"><a href="#怎样去选择合适的索引列顺序" class="headerlink" title="怎样去选择合适的索引列顺序"></a>怎样去选择合适的索引列顺序</h3><ul>
+<li><p>引用<a href="https://www.jb51.net/article/133626.htm" target="_blank" rel="noopener">脚本之家文章的介绍</a><br>  <br></p>
+<ul>
+<li>最容易引起困惑的就是复合索引中列的顺序。在复合索引中，正确地列顺序依赖于使用该索引的查询，并且同时需要考虑如何更好地满足排序和分组的需要。<br><br><br>索引列的顺序意味着索引首先按照最左列进行排序，其次是第二列，第三列…。所以，索引可以按照升序或者降序进行扫描，以满足精确符合列顺序的order by、group by和distinct等子句的查询需求。<br><br><br>当不需要考虑排序和分组时，将选择性最高的列放到复合索引的最左侧（最前列）通常是很好的。这时，索引的作用只是用于优化where条件的查找。但是，可能我们也需要根据那些运行频率最高的查询来调整索引列的顺序，让这种情况下索引的选择性最高。</li>
+</ul>
+</li>
+<li><p>怎么去选择排序的例子,有条sql为<code>select * from payment where order_id = 65421 and older_id = 88941;</code>,这种情况下如何去排列复合索引中的<code>older_id</code>和<code>older_id</code>呢?</p>
+<ul>
+<li><p>使用<code>show index from 表名</code><br><img src="http://static.zybuluo.com/pockadmin/hji6cpn85pxymh5v3psr9x9x/image_1cofnnsbsbig211rlb15fo1i568h.png" alt="image_1cofnnsbsbig211rlb15fo1i568h.png-15.2kB"><br>使用索引基数(cardinality)/数据总量得到的值,越接近1该索引的选择性越高</p>
+<p><br></p>
+</li>
+<li><p>使用<code>select count(distinct 列名)/count(*) ,count(distinct 列名2)/count(*) from 表名</code><br><img src="http://static.zybuluo.com/pockadmin/f80921xsxhd3rrrb2ajh711z/image_1cofod75a1jumh0ip7aqq5lun8u.png" alt="image_1cofod75a1jumh0ip7aqq5lun8u.png-13.2kB"><br>能看出来order_id的值最大,选择性最高,所以复合索引的排列最好为<strong><code>(order_id,older_id)</code></strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<ul>
+<li>尽管，关于选择性和全局基数的经验法则值得去研究和分析，但一定别忘了order by、group by 等因素的影响，这些因素可能对查询的性能造成非常大的影响。</li>
+</ul>
+<h2 id="0X01-索引的方式方法"><a href="#0X01-索引的方式方法" class="headerlink" title="0X01 索引的方式方法"></a>0X01 索引的方式方法</h2><h3 id="B-Tree-索引"><a href="#B-Tree-索引" class="headerlink" title="B-Tree 索引"></a>B-Tree 索引</h3><ul>
+<li>B-Tree 索引<ul>
+<li>B-Tree 索引(B树(可以是多叉树)),也是主流的索引方法</li>
+<li>B-Tree 对索引列是顺序存储的,因此很适合查找范围数据。它能够加快访问数据的速度,因为存储引擎不再需要进行全表扫描来获取需要的数据</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<h3 id="HASH-哈希索引-key-value"><a href="#HASH-哈希索引-key-value" class="headerlink" title="HASH 哈希索引(key,value)"></a>HASH 哈希索引(key,value)</h3><ul>
+<li>哈希索引<ul>
+<li>哈希索引这种方式对范围查询支持得不是很好</li>
+<li>哈希索引只有精确匹配索引所有列的查询才有效。在MySQL中，只有Memory引擎显示支持哈希索引。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Mysql索引基数的概念"><a href="#Mysql索引基数的概念" class="headerlink" title="Mysql索引基数的概念"></a>Mysql索引基数的概念</h2><ul>
+<li><p>这里就用工具Navicat做记录吧,方便点,命令行太难看了….</p>
+</li>
+<li><p>索引基数(cardinality): 索引中不重复的索引值的数量</p>
+<ul>
+<li>比如,有一张消费记录表,其中的字段<strong>消费者ID</strong>设置了索引,全表有5条数据,其中<strong>消费者ID</strong>为<strong>2</strong>的人记录了两次,数据大致为<code>(1,2,2,3,4)</code>,这时索引的基数就为<strong>4</strong></li>
+</ul>
+</li>
+<li><p>索引基数相对于数据表行数较高（也就是说，列中包含很多不同的值，重复的值很少）的时候，它的工作效果最好。 </p>
+<ul>
+<li>如果某个数据列用于记录性别（只有”Man”和”Wman”两种值），那么索引的用处就不大。因为选择其中的任意一个索引都可以得到大约一半的数据行,查询优化器发现某个值出现在表的数据行中的百分比很高的时候，它一般会忽略索引，进行全表扫描。惯用的百分比界线是”30%”。</li>
+</ul>
+</li>
+<li><p>索引基数的查看 <code>show index from 表名</code> Cardinality列中的数即为索引基数,但是是估计值不是准确值</p>
+<ul>
+<li><strong>为何是估计值而不是准确值?</strong><ul>
+<li>在生产环境中，数据表的更新操作非常频繁，每一次的数据更新操作，都会更新索引文件中的数据，而如果每次都要进行一次该索引中不同索引值的统计会增加系统压力</li>
+</ul>
+</li>
+<li><strong>索引基数的初始值</strong><ul>
+<li>新表中添加索引：索引基数为0</li>
+<li>旧表中添加索引：索引基数为当前表中数据总数</li>
+</ul>
+</li>
+<li><strong>索引基数的计算方式</strong><ul>
+<li>采用采样的方法，默认情况下InnoDB会对8个叶子节点的信息进行统计，过程如下: <ul>
+<li>取得B+Tree所有叶子节点的数量，记为A</li>
+<li>随机取得B+Tree索引的8个叶子节点。统计每个叶子节点的不同记录的条数，即为P1,P2,…,P8</li>
+<li>根据采样计算出Cardinality的预估值：Cardinality=（P1+P2+…+P8）*A/8</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>索引基数的更新语句<code>ANALYZE 表名</code></strong><ul>
+<li>何时自动更新索引基数的值？ <ul>
+<li>表中的1/16数据已发生变化：上一次统计Cardinality信息后，表中1/16数据已发生变化，则会触发Cardinality统计</li>
+<li>start_modified_counter&gt;2 000 000 000：为对表中某一行数据频繁进行更新操作，实际数据条数并没有发生变化，则InnoDB会生成start_modified_counter计数器，用来统计操作次数，如果次数大于2 000 000 000，则会触发Cardinality统计</li>
+<li>show index、ANALYZE TABLE、SHOW TABLE STATUS以及访问INFOMATION_SCHEMA架构下的TABLES或STATISTICS会导致Cardinality的统计</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><br><br><br></p>
+<ul>
+<li>下面看一下<code>show index from 表名</code> 结果中各列的含义<a href="https://blog.csdn.net/mingyundezuoan/article/details/79038989" target="_blank" rel="noopener">引用博主命运的左岸</a><br><img src="http://static.zybuluo.com/pockadmin/3ennsaferaae4uncnpwl5fvb/image_1cofpujnu17ne1p7s1fjer5gjji9b.png" alt="image_1cofpujnu17ne1p7s1fjer5gjji9b.png-47.1kB"></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/note/eae56122.html" rel="next" title="SpringBoot 整合druid">
+                <i class="fa fa-chevron-left"></i> SpringBoot 整合druid
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/by.jpg"
+                alt="Pock" />
+            
+              <p class="site-author-name" itemprop="name">Pock</p>
+              <p class="site-description motion-element" itemprop="description">成长</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pockadmin@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0X00-在Mysql中的索引分类"><span class="nav-number">1.</span> <span class="nav-text">0X00 在Mysql中的索引分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主键索引"><span class="nav-number">1.1.</span> <span class="nav-text">主键索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常规索引"><span class="nav-number">1.2.</span> <span class="nav-text">常规索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#唯一索引"><span class="nav-number">1.3.</span> <span class="nav-text">唯一索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全文索引"><span class="nav-number">1.4.</span> <span class="nav-text">全文索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复合索引-联合索引-组合索引"><span class="nav-number">1.5.</span> <span class="nav-text">复合索引(联合索引,组合索引)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外键索引"><span class="nav-number">1.6.</span> <span class="nav-text">外键索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复合索引的排序选择"><span class="nav-number">2.</span> <span class="nav-text">复合索引的排序选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#怎样去选择合适的索引列顺序"><span class="nav-number">2.1.</span> <span class="nav-text">怎样去选择合适的索引列顺序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0X01-索引的方式方法"><span class="nav-number">3.</span> <span class="nav-text">0X01 索引的方式方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#B-Tree-索引"><span class="nav-number">3.1.</span> <span class="nav-text">B-Tree 索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HASH-哈希索引-key-value"><span class="nav-number">3.2.</span> <span class="nav-text">HASH 哈希索引(key,value)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mysql索引基数的概念"><span class="nav-number">4.</span> <span class="nav-text">Mysql索引基数的概念</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pock</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+  <span>Hosted by <a href="https://pages.coding.me" >Coding Pages</a></span>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://pockadmin.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://voidday.com/note/4fd09d4d.html';
+          this.page.identifier = 'note/4fd09d4d.html';
+          this.page.title = 'Mysql索引基数';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://pockadmin.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
