@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="hP9LTnqXjN" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Yellowtail:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="RabbitMQ," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这里记录官方的第2个demo,这个demo中主要讲的MQ的队列和消费者在处理消息的同时挂掉了的情况消息怎么去处理,以及任务的公平调度">
+<meta name="keywords" content="RabbitMQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RabbitMQ笔记-3">
+<meta property="og:url" content="http://voidday.com/note/ceab54f3.html">
+<meta property="og:site_name" content="Aurora">
+<meta property="og:description" content="这里记录官方的第2个demo,这个demo中主要讲的MQ的队列和消费者在处理消息的同时挂掉了的情况消息怎么去处理,以及任务的公平调度">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/28CB2C088C274940B491244293070FFA?method=download&shareKey=ddc494a317297cd865e975d567948230">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/4E015608EA684A73AFDAC1ECBD25E283?method=download&shareKey=d319dd3bb7535b1760caa2e116ce1a19">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/F62995C472B34F2C8BACE00E0BBDBE71?method=download&shareKey=a9a6713e81fae4f5bc45ce844e4d9c87">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/26DF701973384DE0A4DE22736011B605?method=download&shareKey=346f7c470da4789e55d2a60fcfb39a93">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/0C45BAAB9D4F41F3A0941A480F5EC933?method=download&shareKey=b6112fdd0a2fb53f08ec1a3197cc4f6b">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/8B0FB9AC67744186A921CDCE06DEC28F?method=download&shareKey=4e2e2cec860fe3e74a04ea148d60763c">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/399F59017F2840A2ADFB435BADC17ED0?method=download&shareKey=713754d486f9955b36d41163151ceece">
+<meta property="og:updated_time" content="2019-02-13T04:39:20.362Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RabbitMQ笔记-3">
+<meta name="twitter:description" content="这里记录官方的第2个demo,这个demo中主要讲的MQ的队列和消费者在处理消息的同时挂掉了的情况消息怎么去处理,以及任务的公平调度">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/28CB2C088C274940B491244293070FFA?method=download&shareKey=ddc494a317297cd865e975d567948230">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://voidday.com/note/ceab54f3.html"/>
+
+
+
+
+
+  <title>RabbitMQ笔记-3 | Aurora</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Aurora</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://voidday.com/note/ceab54f3.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pock">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/by.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Aurora">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RabbitMQ笔记-3</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-24T00:00:00+08:00">
+                2019-01-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RabbitMQ/" itemprop="url" rel="index">
+                    <span itemprop="name">RabbitMQ</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/note/ceab54f3.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="note/ceab54f3.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,429
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>这里记录官方的第2个demo,这个demo中主要讲的MQ的队列和消费者在处理消息的同时挂掉了的情况消息怎么去处理,以及任务的公平调度</strong><br><a id="more"></a></p>
+<p>[TOC]</p>
+<h3 id="0-概要"><a href="#0-概要" class="headerlink" title="0-概要"></a>0-概要</h3><ul>
+<li>在官方的第一个Demo中只有一个消费者,而且任务简单并没有在真实情况下进行模拟,比如遇到处理复杂的任务需要处理几秒钟的那种,在这个Demo中将使用Thread.sleep()进行模拟复杂任务的等待情况,并且启动第二个消费者</li>
+</ul>
+<h3 id="1-循环调度简单实现"><a href="#1-循环调度简单实现" class="headerlink" title="1-循环调度简单实现"></a>1-循环调度简单实现</h3><ul>
+<li><p>任务队列是要是避免立即执行复杂型任务,并且立即执行,我们需要把它封装成一个任务放到任务队列.后台将执行任务.当运行多个工作进程(消费者)时它们之间可以共享任务</p>
+</li>
+<li><p>循环调度的有点就是任务可以并行执行,假如任务数量巨大,我们可以添加更多的消费者,扩展起来非常轻松</p>
+</li>
+<li><p>如下图</p>
+</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/api/personal/file/28CB2C088C274940B491244293070FFA?method=download&amp;shareKey=ddc494a317297cd865e975d567948230" alt="3531efe79d7b6c8e1f013e7eb3b0b600.png"></p>
+<h4 id="1-1-生产者Java端编写"><a href="#1-1-生产者Java端编写" class="headerlink" title="1.1-生产者Java端编写"></a>1.1-生产者Java端编写</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> demo02;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.rabbitmq.client.Channel;</span><br><span class="line"><span class="keyword">import</span> com.rabbitmq.client.Connection;</span><br><span class="line"><span class="keyword">import</span> com.rabbitmq.client.ConnectionFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.StandardCharsets;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeoutException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 官方Demo 02 生产者</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NewTask</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 定义队列名称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String QUEUE_NAME = <span class="string">"task_queue"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建一个连接</span></span><br><span class="line">        ConnectionFactory factory = <span class="keyword">new</span> ConnectionFactory();</span><br><span class="line">        factory.setHost(<span class="string">"127.0.0.1"</span>);</span><br><span class="line">        factory.setUsername(<span class="string">"user"</span>);</span><br><span class="line">        factory.setPassword(<span class="string">"123456"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//注意这里使用了 try-with-resources,</span></span><br><span class="line">        <span class="keyword">try</span> (Connection connection = factory.newConnection();</span><br><span class="line">             Channel channel = connection.createChannel()) &#123;</span><br><span class="line">            <span class="comment">//普通队列声明</span></span><br><span class="line">            <span class="comment">//参数的大概意思 参数1 queue : 队列名称</span></span><br><span class="line">            <span class="comment">//             参数2 Durable : 是否持久化队列(该队列在服务器重启过后存活)</span></span><br><span class="line">            <span class="comment">//             参数3 exclusive : 是否声明一个排他性队列(以后在写文章进行统一解释MQ的队列类型)</span></span><br><span class="line">            <span class="comment">//             参数4 autoDelete : 是否声明一个自动删除的队列</span></span><br><span class="line">            <span class="comment">//             参数5 arguments : 队列的其它属性(构造参数)</span></span><br><span class="line">            channel.queueDeclare(QUEUE_NAME, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 持久化队列声明,参数 durable 为 true</span></span><br><span class="line"><span class="comment">             * channel.queueDeclare(QUEUE_NAME, true, false, false, null);</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line"></span><br><span class="line">            String message = <span class="string">"Hello My Name Is Task 01 "</span>;</span><br><span class="line">            <span class="comment">//普通消息声明</span></span><br><span class="line">            <span class="comment">//  参数1 exchange : 交换机名称,默认的话是空字符串,消息通过routingKey指定的名称路由到队列（如果存在,是直接路由到队列）</span></span><br><span class="line">            <span class="comment">//  参数2 routingKey : 路由的key 我理解为指定消息发送到哪个队列</span></span><br><span class="line">            <span class="comment">//  参数3 BasicProperties : 可以自行查看BasicProperties类的定义</span></span><br><span class="line">            channel.basicPublish(<span class="string">""</span>, QUEUE_NAME, <span class="keyword">null</span>, message.getBytes(StandardCharsets.UTF_8));</span><br><span class="line"></span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 持久化消息声明,修改了BasicProperties参数</span></span><br><span class="line"><span class="comment">             * channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes(StandardCharsets.UTF_8))</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            System.out.println(<span class="string">" [x] Sent '"</span> + message + <span class="string">"'"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (TimeoutException | IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-消费者Java端编写"><a href="#1-2-消费者Java端编写" class="headerlink" title="1.2-消费者Java端编写"></a>1.2-消费者Java端编写</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> demo02;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.rabbitmq.client.Channel;</span><br><span class="line"><span class="keyword">import</span> com.rabbitmq.client.Connection;</span><br><span class="line"><span class="keyword">import</span> com.rabbitmq.client.ConnectionFactory;</span><br><span class="line"><span class="keyword">import</span> com.rabbitmq.client.DeliverCallback;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.StandardCharsets;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeoutException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 官方Demo 02 消费者</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Work</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 队列名称,保持与send端一样</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String QUEUE_NAME = <span class="string">"task_queue"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, TimeoutException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//连接</span></span><br><span class="line">        ConnectionFactory factory = <span class="keyword">new</span> ConnectionFactory();</span><br><span class="line">        factory.setHost(<span class="string">"127.0.0.1"</span>);</span><br><span class="line">        factory.setUsername(<span class="string">"user"</span>);</span><br><span class="line">        factory.setPassword(<span class="string">"123456"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//为什么这里不使用 try-with-resource语句来自动关闭通道和连接？</span></span><br><span class="line">        <span class="comment">//因为在生产者中给 队列发送消息过后关闭连接没有什么影响</span></span><br><span class="line">        <span class="comment">//但是在 消费者中,需要异步监听,当消息到达时需要保持进程在活跃中</span></span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//队列声明</span></span><br><span class="line">        channel.queueDeclare(QUEUE_NAME, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">null</span>);</span><br><span class="line">        System.out.println(<span class="string">" [*] Waiting for messages. To exit press CTRL+C"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//它将缓冲消息,直到准备使用它,这就是DeliverCallback子类的作用</span></span><br><span class="line">        DeliverCallback deliverCallback = (consumerTag, delivery) -&gt; &#123;</span><br><span class="line">            String message = <span class="keyword">new</span> String(delivery.getBody(), StandardCharsets.UTF_8);</span><br><span class="line">            System.out.println(<span class="string">" [x] Received '"</span> + message + <span class="string">"'"</span>);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                doWork(message);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">" [X] Done My Num is 01"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">boolean</span> autoAck = <span class="keyword">true</span>;</span><br><span class="line">        channel.basicConsume(QUEUE_NAME, autoAck, deliverCallback, consumerTag -&gt; &#123;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 模拟处理耗时任务</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> task</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> InterruptedException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">(String task)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line"></span><br><span class="line">        Thread.sleep(<span class="number">10000</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-3-效果展示"><a href="#1-3-效果展示" class="headerlink" title="1.3-效果展示"></a>1.3-效果展示</h4><ul>
+<li><p>我们复制一份<strong>Work.java</strong>的代码,把它当做第二个消费者去共同处理任务,生产者发送消息过后,第一个被调度的消费者处理消息需要等待10秒,再次发送消息不会发送到第一个消费者去,而是发送到第二个消费者去处理</p>
+</li>
+<li><p>效果如下图</p>
+</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/api/personal/file/4E015608EA684A73AFDAC1ECBD25E283?method=download&amp;shareKey=d319dd3bb7535b1760caa2e116ce1a19" alt="0e741fd5d9d7284e6b0d6c9c46457032.png"></p>
+<hr>
+<p><img src="https://note.youdao.com/yws/api/personal/file/F62995C472B34F2C8BACE00E0BBDBE71?method=download&amp;shareKey=a9a6713e81fae4f5bc45ce844e4d9c87" alt="81b64699f555c6ebe7b6785d9943a8c7.png"></p>
+<hr>
+<ul>
+<li>可以看出任务是被轮训调度给消费者的</li>
+</ul>
+<h3 id="2-消息确认"><a href="#2-消息确认" class="headerlink" title="2-消息确认"></a>2-消息确认</h3><ul>
+<li>当任务调度到消费者过后,开始处理任务的过程当中消费者因为各种原因下线了会发生什么.如果使用上面的Demo进行测试的话,一旦MQ向消费者发送了消息,消息将立刻标记为删除,在这种情况下如果一个消费者在处理任务的过程中下线了,会丢失刚刚处理的任务,还将丢失发送给这个消费者但是还没开始处理的所有消息</li>
+</ul>
+<hr>
+<ul>
+<li>我们希望的是当消费者意外下线的情况发送,任务将会交给另外一个消费者进行处理 </li>
+</ul>
+<hr>
+<ul>
+<li>为了保证消息永不丢失,MQ支持 <strong>message acknowledgments(消息确认)</strong>,消费者发回<strong>ack(nowledgement)</strong> 告诉MQ已收到,处理了消息MQ可以自由删除它</li>
+</ul>
+<hr>
+<ul>
+<li>如果消费者意外下线,<strong>channel(通道)关闭, connection(连接)关闭,或者TCP连接丢失</strong> 而没有发送确认,MQ将理解为消息未完成处理并且将重新放入队列中.如果同时还有其它消费者在线,则会迅速将其发送给其它消费者.这样就可以确保即使消费者下线,消息也不会丢失</li>
+</ul>
+<hr>
+<ul>
+<li>在默认情况下,<strong>Manual message acknowledgments(手动消息确认)</strong> 是已经打开的,但是在上面的代码中我们已经关闭了它,使用的<strong>autoAck=true</strong> ,在真实情况下一旦我们完成的任务,就应该将此标志设置为<strong>false</strong>并从消费者发送确认</li>
+</ul>
+<hr>
+<h4 id="2-1-消息确认Java消费者端代码"><a href="#2-1-消息确认Java消费者端代码" class="headerlink" title="2.1-消息确认Java消费者端代码"></a>2.1-消息确认Java消费者端代码</h4><ul>
+<li>修改过的消费者代码如下</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> demo02;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.rabbitmq.client.Channel;</span><br><span class="line"><span class="keyword">import</span> com.rabbitmq.client.Connection;</span><br><span class="line"><span class="keyword">import</span> com.rabbitmq.client.ConnectionFactory;</span><br><span class="line"><span class="keyword">import</span> com.rabbitmq.client.DeliverCallback;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.StandardCharsets;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeoutException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Work02</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 队列名称,保持与send端一样</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String QUEUE_NAME = <span class="string">"task_queue"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, TimeoutException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//连接</span></span><br><span class="line">        ConnectionFactory factory = <span class="keyword">new</span> ConnectionFactory();</span><br><span class="line">        factory.setHost(<span class="string">"182.61.24.136"</span>);</span><br><span class="line">        factory.setUsername(<span class="string">"demoUser"</span>);</span><br><span class="line">        factory.setPassword(<span class="string">"Yilunjk123"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//为什么这里不使用 try-with-resource语句来自动关闭通道和连接？</span></span><br><span class="line">        <span class="comment">//因为在生产者中给 队列发送消息过后关闭连接没有什么影响</span></span><br><span class="line">        <span class="comment">//但是在 消费者中,需要异步监听,当消息到达时需要保持进程在活跃中</span></span><br><span class="line">        Connection connection = factory.newConnection();</span><br><span class="line">        Channel channel = connection.createChannel();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//队列声明</span></span><br><span class="line">        channel.queueDeclare(QUEUE_NAME, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">null</span>);</span><br><span class="line">        System.out.println(<span class="string">" [*] Waiting for messages. To exit press CTRL+C"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//它将缓冲消息,直到准备使用它,这就是DeliverCallback子类的作用</span></span><br><span class="line">        DeliverCallback deliverCallback = (consumerTag, delivery) -&gt; &#123;</span><br><span class="line">            String message = <span class="keyword">new</span> String(delivery.getBody(), StandardCharsets.UTF_8);</span><br><span class="line">            System.out.println(<span class="string">" [x] Received '"</span> + message + <span class="string">"'"</span>);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                doWork(message);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">" [X] Done My Num is 02"</span>);</span><br><span class="line">                <span class="comment">//添加的消息确认</span></span><br><span class="line">                channel.basicAck(delivery.getEnvelope().getDeliveryTag(), <span class="keyword">false</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">//关闭了自动确认</span></span><br><span class="line">        <span class="keyword">boolean</span> autoAck = <span class="keyword">false</span>;</span><br><span class="line">        channel.basicConsume(QUEUE_NAME, autoAck, deliverCallback, consumerTag -&gt; &#123;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 模拟处理耗时任务</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> task</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> InterruptedException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">(String task)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        Thread.sleep(<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="2-2-效果演示"><a href="#2-2-效果演示" class="headerlink" title="2.2-效果演示"></a>2.2-效果演示</h4><ul>
+<li>生产者发送消息</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/api/personal/file/26DF701973384DE0A4DE22736011B605?method=download&amp;shareKey=346f7c470da4789e55d2a60fcfb39a93" alt="0a74e02e1aeed6cda4219fe6a6ba752a.png"></p>
+<hr>
+<ul>
+<li>消费者1接收到消息,但是处理过程中下线</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/api/personal/file/0C45BAAB9D4F41F3A0941A480F5EC933?method=download&amp;shareKey=b6112fdd0a2fb53f08ec1a3197cc4f6b" alt="ebe4eda16c3975b0f48621dfb8cc4a7a.png"></p>
+<hr>
+<ul>
+<li>任务被重新调度到消费者2进行处理</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/api/personal/file/8B0FB9AC67744186A921CDCE06DEC28F?method=download&amp;shareKey=4e2e2cec860fe3e74a04ea148d60763c" alt="a3a59d7c980a40679d0fab6a5609213d.png"></p>
+<hr>
+<h3 id="3-消息持久化-或者叫队列和消息的持久化"><a href="#3-消息持久化-或者叫队列和消息的持久化" class="headerlink" title="3-消息持久化(或者叫队列和消息的持久化)"></a>3-消息持久化(或者叫队列和消息的持久化)</h3><ul>
+<li>上面的例子中确保了即使消费者下线,任务也不会丢失.但是MQ服务停止,我们的任务任然会丢失</li>
+</ul>
+<hr>
+<ul>
+<li>队列持久化可以通过在声明队列的时候进行持久化队列,如下图(修改生产者代码中的队列声明部分,消费者一样需要修改)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//持久化队列声明,参数 durable 为 true</span></span><br><span class="line">channel.queueDeclare(QUEUE_NAME, <span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>消息持久化只需要修改生产者的消息发送部分,如下图</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//持久化消息声明,修改了BasicProperties参数</span></span><br><span class="line">channel.basicPublish(<span class="string">""</span>, QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes(StandardCharsets.UTF_8))</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="4-公平派遣"><a href="#4-公平派遣" class="headerlink" title="4-公平派遣"></a>4-公平派遣</h3><ul>
+<li><p>MQ的默认消息调度是轮训的,就像上面的例子,第一个任务给A如果有第二个消息,任务就给B,第三个消息任务就又给A.这样的调度会造成消费者的任务堆积假如在处理复杂任务的情况下,这种情况下可以在<strong>消费者</strong>中的队列中设置每次只接受一个消息,只有处理完过后才接受第二个消息</p>
+</li>
+<li><p>在<strong>消费者</strong>中设置如下</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> prefetchCount = <span class="number">1</span> ;</span><br><span class="line">channel.basicQos（prefetchCount）;</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>消费者如下图:</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/api/personal/file/399F59017F2840A2ADFB435BADC17ED0?method=download&amp;shareKey=713754d486f9955b36d41163151ceece" alt="ac6a9802e0bb383eff09834442e343a2.png"></p>
+<hr>
+<ul>
+<li>这样的话在任务过多加上任务复杂的情况下可能会造成队列里面任务堆积太多,所以要及时的添加消费者</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RabbitMQ/" rel="tag"># RabbitMQ</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/note/b9ac6465.html" rel="next" title="RabbitMQ笔记-2">
+                <i class="fa fa-chevron-left"></i> RabbitMQ笔记-2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/by.jpg"
+                alt="Pock" />
+            
+              <p class="site-author-name" itemprop="name">Pock</p>
+              <p class="site-description motion-element" itemprop="description">成长</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:pockadmin@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0-概要"><span class="nav-number">1.</span> <span class="nav-text">0-概要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-循环调度简单实现"><span class="nav-number">2.</span> <span class="nav-text">1-循环调度简单实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-生产者Java端编写"><span class="nav-number">2.1.</span> <span class="nav-text">1.1-生产者Java端编写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-消费者Java端编写"><span class="nav-number">2.2.</span> <span class="nav-text">1.2-消费者Java端编写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-效果展示"><span class="nav-number">2.3.</span> <span class="nav-text">1.3-效果展示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-消息确认"><span class="nav-number">3.</span> <span class="nav-text">2-消息确认</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-消息确认Java消费者端代码"><span class="nav-number">3.1.</span> <span class="nav-text">2.1-消息确认Java消费者端代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-效果演示"><span class="nav-number">3.2.</span> <span class="nav-text">2.2-效果演示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-消息持久化-或者叫队列和消息的持久化"><span class="nav-number">4.</span> <span class="nav-text">3-消息持久化(或者叫队列和消息的持久化)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-公平派遣"><span class="nav-number">5.</span> <span class="nav-text">4-公平派遣</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pock</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+  <span>Hosted by <a href="https://pages.coding.me" >Coding Pages</a></span>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://pockadmin.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://voidday.com/note/ceab54f3.html';
+          this.page.identifier = 'note/ceab54f3.html';
+          this.page.title = 'RabbitMQ笔记-3';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://pockadmin.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
