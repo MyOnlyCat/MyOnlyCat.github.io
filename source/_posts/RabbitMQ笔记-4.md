@@ -19,7 +19,7 @@ date: 2019-02-14 00:00:00
 - [ ] 交换器的类型
     - [x] 不使用交换器
     - [x] fanout交换器
-    - [ ] direct交换器
+    - [x] direct交换器
     - [ ] topic交换器
     - [ ] headers交换器
 
@@ -266,4 +266,243 @@ public class FanoutRecv {
 
 * * * 
 
+#### direct类型的交换器
 
+* 下图展示了direct交换器的原理图
+
+![direct交换器原理图](https://note.youdao.com/yws/api/personal/file/7B0BE23A61D64CEBA89F2A6576507AC5?method=download&shareKey=c2719152c3ff847c07969ed574025e2e)
+
+* * *
+
+* 上图可以看到 `direct类型的交换器`x和两个通道绑定,分别是Q1和Q2,第一个队列Q1绑定`orange`的`路由key(routingKey)`,而Q2则绑定的`black`和`green`的`路由key`
+
+* 在这种配置下`P(生产者)`发送消息到`X(direct交换器)`,交换器根据消息的`routingKey(路由key)`的不同将消息分配到**不同的队列(Q1,Q2)**
+
+* 图中`orange`key的消息被分配到了`Q1`,因为Q1队列绑定的`orange`;而`black,green`被交换器分配到了`Q2`,因为Q2队列绑定了`black`和`green`的`路由key`
+
+* **使用相同的`路由key`去绑定多个队列是完全没有问题的**,如下图所示
+
+![相同路由key绑定多个队列](https://note.youdao.com/yws/api/personal/file/678239E3A2024657AC09DC161DE6264B?method=download&shareKey=a296e2215ac93735c82569376d7f41ac)
+
+* 上图中`Q1,Q2`都绑定了路由key`black`,在这种情况下,`direct`交换器类型就表现的和`fanout`类型一样了
+
+##### 生产者代码编写
+
+* 下面为Driect类型的交换器的生产者代码
+
+```java
+package demo04;
+
+import com.rabbitmq.client.BuiltinExchangeType;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.TimeoutException;
+
+/**
+ * 官方的第4个Demo
+ * 主要实现了以下内容:
+ * 1.direct类型交换器的使用
+ */
+public class DirectSend {
+
+    /**
+     * 定义交换器的名称
+     */
+    public static final String EXCHANGE_NAME = "logs";
+
+    public static void main(String[] args) {
+
+        //配置连接信息
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("127.0.0.1");
+        factory.setUsername("admin");
+        factory.setPassword("123456");
+
+        //try-with-resources
+        try (Connection connection = factory.newConnection();
+             Channel channel = connection.createChannel()
+        ) {
+
+            //声明交换器类型
+            channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.DIRECT);
+
+            //定义Info消息(消费者只有在routingKek相同时才能接收到消息)
+            String infoMsg = "你好 direct";
+
+            //定义Error消息
+            String errorMsg = "错误 direct";
+
+            //消息发送
+            channel.basicPublish(EXCHANGE_NAME, "info", null, infoMsg.getBytes(StandardCharsets.UTF_8));
+
+            System.out.println(" [X] Sent '" + infoMsg + "'");
+
+            //错误消息发送
+            channel.basicPublish(EXCHANGE_NAME, "error", null, errorMsg.getBytes(StandardCharsets.UTF_8));
+
+            System.out.println(" [X] Sent '" + errorMsg + "'");
+
+        } catch (TimeoutException | IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+}
+
+```
+
+##### 消费者代码编写
+
+###### 负责接收Info路由key
+
+```java
+package demo04;
+
+import com.rabbitmq.client.*;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.TimeoutException;
+
+/**
+ * 对应官方Demo04的客户端
+ * 负责接收Info
+ */
+public class DirectRecvForInfo {
+
+    /**
+     * 交换器名称
+     */
+    public static final String EXCHANGE_NAME = "logs";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+
+        //配置连接信息
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("127.0.0.1");
+        factory.setUsername("admin");
+        factory.setPassword("123456");
+
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
+
+        //声明交换器
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.DIRECT);
+
+        //通过通道声明一个不为持久的队,独占的(仅限此连接),自动删除的(服务器不在使用或者下线将此队列删除)队列
+        String queueName = channel.queueDeclare().getQueue();
+
+        //绑定到交换器
+        channel.queueBind(queueName, EXCHANGE_NAME, "info");
+
+        System.out.println(" [*] 正在等待消息,退出请按 CTRL+C");
+
+        DeliverCallback deliverCallback = (consumerTar, delivery) -> {
+            String msg = new String(delivery.getBody(), StandardCharsets.UTF_8);
+            System.out.println(" [X] 收到消息'" + msg + ",我的工作编号为 DirectRecv,负责接收 Info 消息'");
+            channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+        };
+        channel.basicConsume(queueName, false, deliverCallback, consumerTag -> {});
+    }
+}
+
+```
+
+* * * 
+
+###### 负责接收Error路由key
+
+```java
+package demo04;
+
+import com.rabbitmq.client.*;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.TimeoutException;
+
+/**
+ * 对应官方Demo04的客户端
+ * 负责接error
+ */
+public class DirectRecvForError {
+
+    /**
+     * 交换器名称
+     */
+    public static final String EXCHANGE_NAME = "logs";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+
+        //配置连接信息
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("127.0.0.1");
+        factory.setUsername("admin");
+        factory.setPassword("123456");
+
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
+
+        //声明交换器
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.DIRECT);
+
+        //通过通道声明一个不为持久的队,独占的(仅限此连接),自动删除的(服务器不在使用或者下线将此队列删除)队列
+        String queueName = channel.queueDeclare().getQueue();
+
+        //绑定到交换器
+        channel.queueBind(queueName, EXCHANGE_NAME, "error");
+
+        System.out.println(" [*] 正在等待消息,退出请按 CTRL+C");
+
+        DeliverCallback deliverCallback = (consumerTar, delivery) -> {
+            String msg = new String(delivery.getBody(), StandardCharsets.UTF_8);
+            System.out.println(" [X] 收到消息'" + msg + ",我的工作编号为 DirectRecv,负责接收 Error 消息'");
+            channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+        };
+        channel.basicConsume(queueName, false, deliverCallback, consumerTag -> {});
+    }
+}
+
+```
+
+##### 代码效果展示
+
+* 生产者发送消息
+
+![Direct类型交换器生产者发送消息](https://note.youdao.com/yws/api/personal/file/75DA5B3B31794D60B29C592FA40F3F05?method=download&shareKey=fda4f310bc855e80ec0a2d0cf67ea1ef)
+
+* 消费者负责Info类型接收消息
+
+![Direct类型交换器Info消费者接受消息](https://note.youdao.com/yws/api/personal/file/170B0FFCB34D4A1FBC1F671064301D7C?method=download&shareKey=5a901136cd9cea3ba4d95e11d8260cb1)
+
+* 消费者负责Error类型接收消息
+
+![Direct类型交换器消费者接受Error消息](https://note.youdao.com/yws/api/personal/file/461EA8FA6C23465A993B46A05EC771D6?method=download&shareKey=3bf4d348da0eedcc6db9f85915314856)
+
+* **这里说一下上面介绍Direct交换器没有说到的地方就拿这个代码举例,当直接启动生产者发送消息,不启动两个消费者消息会丢失,只启动一个消费者,发送给另一个消费者的消息会丢失**
+
+##### 代码中的一些API介绍(基于5.6.0 AP)
+
+* 这里就暂时只说一下上面没说的,有空我会把API整合到一个地方
+
+###### 消费者的代码
+
+> **channel.queueBind()**
+
+* 此方法被重载了2次....精力有限,有能力可以参考[RabbitMQ-queueBind方法API](https://rabbitmq.github.io/rabbitmq-java-client/api/current/com/rabbitmq/client/Channel.html#queueBind(java.lang.String,java.lang.String,java.lang.String))
+
+> channel.queueBind(java.lang.String queue, java.lang.String exchange, java.lang.String routingKey)
+
+> 主动声明一个非自动删除，非持久的交换，没有额外的参数
+
+| 参数名    |   参数类型    |   参数意义     |
+| :-----:    |   :--------:   |   :--------:   |
+| queue  |   String      |   通道名称      |
+| exchange      |   String      | 交换器名称    |
+| routingKey      |   String      |   路由Key    |
+* * * 
