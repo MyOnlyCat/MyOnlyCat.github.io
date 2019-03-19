@@ -20,7 +20,7 @@ date: 2019-02-14 00:00:00
     - [x] 不使用交换器
     - [x] fanout交换器
     - [x] direct交换器
-    - [ ] topic交换器
+    - [x] topic交换器
     - [ ] headers交换器
 
 * * *
@@ -506,3 +506,139 @@ public class DirectRecvForError {
 | exchange      |   String      | 交换器名称    |
 | routingKey      |   String      |   路由Key    |
 * * * 
+
+#### topic类型的交换器
+
+* 下图展示了topic交换器的原理
+
+![topic原理图](https://note.youdao.com/yws/api/personal/file/1037553C4D374527875FC64532594CD3?method=download&shareKey=a90964cdbe48eebb5becdbfd046e7147)
+
+* 消息分发规则: **一个附带特殊的选择键将会被转发到绑定键与之匹配的队列中。**
+* * *
+* 路由key规则:**路由key必须是由点隔开的一系列的标识符组成：”stock.usd.nyse”,“nyse.vmw”,”quick.orange.rabbit”.你可以定义任数量的标识符，上限为255个字节。**
+* * *
+* 通道绑定的key: 这个有点类似于正则表达式的意思了,如下表:
+
+| 表达式 | 匹配意义 |
+| :--: | :--: |
+| * | (星号)可以替代一个单词(或者标识符) |
+| # | (hash)可以替换零个或多个单词(或者标识符) |
+
+* * *
+
+* 图示意义解释: **消息1(fast.orange.*)通过交换器(topic类型)分配到消费者Q6(#)和Q7(*.orange.*),因为Q6的#(hash)可以匹配任意标识符,而Q7的orange.(星号)匹配前后的一个单词或者标识符,所以这两个通道都能收到消息,消息2(lazy.orange.a.b)通过交换器会到达Q6.Q8,因为Q6匹配所有,而Q8(lazy.#)可以匹配lazy.后面的零个或者多个标识符**
+
+##### 生产者代码编写
+
+```java
+package demo05;
+
+import com.rabbitmq.client.BuiltinExchangeType;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.TimeoutException;
+
+
+public class TopicSend {
+
+    //定义交换器名称
+    private static final String EXCHANGE_NAME = "topic_logs";
+
+    public static void main(String[] args) {
+
+        //配置连接信息
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("127.0.0.1");
+        factory.setUsername("admin");
+        factory.setPassword("123456");
+
+        //tyr-witch-resources
+        try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel();)
+        {
+
+            //声明交换器类型
+            channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
+
+            //定义消息
+            String msg = "# 匹配";
+
+            //消息发送
+            channel.basicPublish(EXCHANGE_NAME, "anonymous.info", null, msg.getBytes(StandardCharsets.UTF_8));
+
+            System.out.println(" [X] Sent '" + msg + "'");
+
+        } catch (TimeoutException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+
+```
+
+##### 消费者代码编写
+
+```java
+package demo05;
+
+import com.rabbitmq.client.*;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.TimeoutException;
+
+public class TopicRecvForJinHao {
+
+    /**
+     * 交换器名称
+     */
+    public static final String EXCHANGE_NAME = "topic_logs";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+
+        //配置连接信息
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("127.0.0.1");
+        factory.setUsername("admin");
+        factory.setPassword("123456");
+
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
+
+        //声明交换器
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
+
+        //通过通道声明一个不为持久的队,独占的(仅限此连接),自动删除的(服务器不在使用或者下线将此队列删除)队列
+        String queueName = channel.queueDeclare().getQueue();
+
+        //绑定到交换器,配置匹配key为 # 接收所有类型消息
+        channel.queueBind(queueName, EXCHANGE_NAME, "#");
+
+        System.out.println(" [*] 正在等待消息,退出请按 CTRL+C");
+
+        DeliverCallback deliverCallback = (consumerTar, delivery) -> {
+            String msg = new String(delivery.getBody(), StandardCharsets.UTF_8);
+            System.out.println(" [X] 收到消息'" + msg + ",我的路由Key为 # ,负责接收所有消息'");
+            channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+        };
+        channel.basicConsume(queueName, false, deliverCallback, consumerTag -> {});
+    }
+
+}
+
+```
+##### 代码效果展示
+
+* 生产者发送消息如图所示
+![topic发送消息](https://note.youdao.com/yws/api/personal/file/18262FE55C6941C1BEC22B5707A1D1B4?method=download&shareKey=2ec22d32cafbf26bfb06b2d7bba17a38)
+
+* 消费者#号接收消息
+![topic消费者#号匹配消息](https://note.youdao.com/yws/api/personal/file/12D9F659DE1C471986B8A44A97DC5942?method=download&shareKey=e1d8f21f3d0df6be88cc721a5896383b)
+
+##### 其它说明
+
+* 上面的代码只是一个最简单的demo状态而且只是实验了 # 匹配而已,你们可以启动两个生产者并且使用不同的路由key,然后在启动两个消费者使用不同的匹配规则,就可以实现类似于示例图的效果了
